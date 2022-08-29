@@ -1,10 +1,30 @@
+CREATE DATABASE "therma_solutions";
 
--- USER is a reserved keyword with Postgres
--- You must use double quotes in every query that user is in:
--- ex. SELECT * FROM "user";
--- Otherwise you will have errors!
 CREATE TABLE "user" (
     "id" SERIAL PRIMARY KEY,
     "username" VARCHAR (80) UNIQUE NOT NULL,
-    "password" VARCHAR (1000) NOT NULL
+    "password" VARCHAR (1000) NOT NULL,
+    "access_level" INT DEFAULT 0
+);
+
+CREATE TABLE "procedure" (
+	"user_id" integer references "user",
+	"total_time" time,
+	"total_htu" NUMERIC(6, 3),
+	"date" date,
+	"notes" varchar(600)
+);
+
+CREATE TABLE "diagnostics" (
+	"procedure_id" integer references "user",
+	"interval_time" interval,
+	"avg_temp" NUMERIC (5, 3),
+	"interval_htu" NUMERIC (5, 3),
+	"t1" NUMERIC (5, 3),
+	"t2" NUMERIC (5, 3),
+	"t3" NUMERIC (5, 3),
+	"t4" NUMERIC (5, 3),
+	"t5" NUMERIC (5, 3),
+	"t6" NUMERIC (5, 3),
+	"t7" NUMERIC (5, 3)
 );
