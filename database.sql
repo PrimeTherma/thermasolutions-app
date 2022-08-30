@@ -9,10 +9,10 @@ CREATE TABLE "user" (
 
 CREATE TABLE "procedure" (
 	"user_id" integer references "user",
-	"total_time" time,
-	"total_htu" NUMERIC(6, 3),
-	"date" date,
-	"notes" varchar(600)
+	"total_time" time DEFAULT NULL,
+	"total_htu" NUMERIC(6, 3) DEFAULT NULL,
+	"date" date DEFAULT CURRENT_DATE,
+	"notes" varchar(600) DEFAULT NULL
 );
 
 CREATE TABLE "diagnostics" (
