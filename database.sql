@@ -8,6 +8,7 @@ CREATE TABLE "user" (
 );
 
 CREATE TABLE "procedure" (
+	"id" SERIAL PRIMARY KEY,
 	"user_id" integer references "user",
 	"total_time" time DEFAULT NULL,
 	"total_htu" NUMERIC(6, 3) DEFAULT NULL,
@@ -16,6 +17,7 @@ CREATE TABLE "procedure" (
 );
 
 CREATE TABLE "diagnostics" (
+	"id" SERIAL PRIMARY KEY,
 	"procedure_id" integer references "user",
 	"interval_time" interval,
 	"avg_temp" NUMERIC (5, 3),
