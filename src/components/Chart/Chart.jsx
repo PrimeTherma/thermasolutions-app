@@ -1,15 +1,15 @@
 import {useState, useEffect, useRef} from 'react';
 
-import {LineChart, CartesianGrid, YAxis, Tooltip, Legend, Line} from 'recharts'
+import {LineChart, CartesianGrid, YAxis, XAxis, Tooltip, Legend, Line} from 'recharts'
 
 
 function Chart() {
     const [response, setResponse] = useState([]);
     const [time, setTime] = useState('');
-    const [array, setArray] = useState([{Time:0},{Time:0},{Time:0},{Time:0},{Time:0},{Time:0},{Time:5},{Time:5},{Time:5},{Time:5},{Time:5},{Time:5},{Time:0},{Time:0},{Time:0},{Time:0},{Time:0},{Time:0},{Time:0},{Time:0},{Time:0},{Time:0},{Time:0},{Time:5},{Time:5},{Time:5},{Time:5},{Time:5},{Time:5},{Time:0},{Time:0},{Time:0},{Time:0},{Time:0},{Time:0},{Time:0},{Time:0},{Time:0},{Time:0},{Time:0},{Time:5},{Time:5},{Time:5},{Time:5},{Time:5},{Time:5},{Time:0},{Time:0},{Time:0},{Time:0},{Time:0},{Time:0},{Time:0},{Time:0},{Time:0},{Time:0},{Time:0},{Time:5},{Time:5},{Time:5},{Time:5},{Time:5},{Time:5},{Time:0},{Time:0},{Time:0},{Time:0},{Time:0}]);
+    const [array, setArray] = useState([{Temp:34},{Temp:34},{Temp:34},{Temp:34},{Temp:34},{Temp:34},{Temp:45},{Temp:45},{Temp:45},{Temp:45},{Temp:45},{Temp:45},{Temp:34},{Temp:34},{Temp:34},{Temp:34},{Temp:34},{Temp:34},{Temp:34},{Temp:34},{Temp:34},{Temp:34},{Temp:34},{Temp:45},{Temp:45},{Temp:45},{Temp:45},{Temp:45},{Temp:45},{Temp:34},{Temp:34},{Temp:34},{Temp:34},{Temp:34},{Temp:34},{Temp:34},{Temp:34},{Temp:34},{Temp:34},{Temp:34},{Temp:45},{Temp:45},{Temp:45},{Temp:45},{Temp:45},{Temp:45},{Temp:34},{Temp:34},{Temp:34},{Temp:34},{Temp:34},{Temp:34},{Temp:34},{Temp:34},{Temp:34},{Temp:34},{Temp:34},{Temp:45},{Temp:45},{Temp:45},{Temp:45},{Temp:45},{Temp:45},{Temp:34},{Temp:34},{Temp:34},{Temp:34},{Temp:34}]);
     const timeoutRef = useRef(null);
     function validate() {
-        setArray((prevState)=>[...prevState,{Time:(Math.random()>=0.5)? 5 : 0}].slice(1))
+        setArray((prevState)=>[...prevState,{Temp:(Math.random()>= 0.5)? 45 : 34}].slice(1))
     }
 
     useEffect(() => {
@@ -18,7 +18,7 @@ function Chart() {
         }
         let interval = 6000;
         let speed = 100;
-        for(let i=0; i<interval; i++) {
+        for(let i=1; i<interval; i++) {
             timeoutRef.current = setTimeout(()=> {
             timeoutRef.current = null;
             validate()
@@ -36,7 +36,8 @@ function Chart() {
                 <YAxis label="AVG Temp" />
                 <Tooltip />
                 <Legend />
-                <Line type="monotone" dataKey="Time" stroke="#8884d8" />
+                <Line type="monotone" dataKey="Temp" stroke="#8884d8" />
+                <XAxis label="Time" />
 
             </LineChart>
     
