@@ -6,10 +6,12 @@ import {LineChart, CartesianGrid, YAxis, XAxis, Tooltip, Legend, Line, Label, Re
 function Chart() {
     const [response, setResponse] = useState([]);
     const [time, setTime] = useState('');
-    const [array, setArray] = useState([{Temp:39},{Temp:39},{Temp:39},{Temp:39},{Temp:39},{Temp:39},{Temp:42},{Temp:42},{Temp:42},{Temp:42},{Temp:42},{Temp:42},{Temp:39},{Temp:39},{Temp:39},{Temp:39},{Temp:39},{Temp:39},{Temp:39},{Temp:39},{Temp:39},{Temp:39},{Temp:39},{Temp:42},{Temp:42},{Temp:42},{Temp:42},{Temp:42},{Temp:42},{Temp:39},{Temp:39},{Temp:39},{Temp:39},{Temp:39},{Temp:39},{Temp:39},{Temp:39},{Temp:39},{Temp:39},{Temp:39},{Temp:42},{Temp:42},{Temp:42},{Temp:42},{Temp:42},{Temp:42},{Temp:39},{Temp:39},{Temp:39},{Temp:39},{Temp:39},{Temp:39},{Temp:39},{Temp:39},{Temp:39},{Temp:39},{Temp:39},{Temp:42},{Temp:42},{Temp:42},{Temp:42},{Temp:42},{Temp:42},{Temp:39},{Temp:39},{Temp:39},{Temp:39},{Temp:39}]);
+    const [array, setArray] = useState([{Temp:39, Time:'0 s'},{Temp:39, Time:'1 s'},{Temp:39, Time:'2 s'},{Temp:39, Time:'3 s'},{Temp:39, Time:'4 s'},{Temp:39, Time:'5 s'},{Temp:39, Time:'6 s'},{Temp:42, Time:'6 s'},{Temp:42, Time:'7 s'},{Temp:42, Time:'8 s'},{Temp:42, Time:'9 s'},{Temp:42, Time:'10 s'}]);
+    // ,{Temp:42},{Temp:42},{Temp:39},{Temp:39},{Temp:39},{Temp:39},{Temp:39},{Temp:39},{Temp:39},{Temp:39}]);
+        // ,{Temp:39},{Temp:39},{Temp:39},{Temp:42},{Temp:42},{Temp:42},{Temp:42},{Temp:42},{Temp:42},{Temp:39},{Temp:39},{Temp:39},{Temp:39},{Temp:39},{Temp:39},{Temp:39},{Temp:39},{Temp:39},{Temp:39},{Temp:39},{Temp:42},{Temp:42},{Temp:42},{Temp:42},{Temp:42},{Temp:42},{Temp:39},{Temp:39},{Temp:39},{Temp:39},{Temp:39},{Temp:39},{Temp:39},{Temp:39},{Temp:39},{Temp:39},{Temp:39},{Temp:42},{Temp:42},{Temp:42},{Temp:42},{Temp:42},{Temp:42},{Temp:39},{Temp:39},{Temp:39},{Temp:39},{Temp:39}]);
     const timeoutRef = useRef(null);
     function validate() {
-        setArray((prevState)=>[...prevState,{Temp:(Math.random()>= 0.5)? 42 : 39}].slice(1))
+        setArray((prevState)=>[...prevState,{Temp:(Math.random()>= 0.5)? 42 : 39, Time:'11 s'}].slice(1))
     }
 
     useEffect(() => {
@@ -17,7 +19,7 @@ function Chart() {
             
         }
         let interval = 6000;
-        let speed = 100;
+        let speed = 1000;
         for(let i=1; i<interval; i++) {
             timeoutRef.current = setTimeout(()=> {
             timeoutRef.current = null;
@@ -34,14 +36,15 @@ function Chart() {
                 <CartesianGrid strokeDasharray="3 3" />
                 
                 <YAxis 
-                label={{ value: 'AVG Temp', angle: -90, position: 'insideLeft' }} 
-                type="number" domain={['dataMin - 2', 'dataMax + 2']}
+                    label={{ value: 'AVG Temp', angle: -90, position: 'insideLeft' }} 
+                    type="number" domain={['dataMin - 2', 'dataMax + 2']}
+                    interval="preserveStartEnd"
                 />
                 <Tooltip />
                 <Legend />
-                <Line type="monotone" dataKey="Temp" stroke="#E23E1B" />
-                <XAxis dataKey="name">
-                    <Label value="Time" offset={0} position="insideBottom" />
+                <Line type="monotone" dataKey="Temp" stroke="#E23E1B" position="bottom"/>
+                <XAxis dataKey="Time">
+                    {/* <Label value="Time" offset={0} position="bottom" /> */}
                 </XAxis>
                 <ReferenceArea y1={40.8} y2={42} label="Cancer Kill Zone" />
     
