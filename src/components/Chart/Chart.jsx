@@ -6,10 +6,10 @@ import {LineChart, CartesianGrid, YAxis, Tooltip, Legend, Line} from 'recharts'
 function Chart() {
     const [response, setResponse] = useState([]);
     const [time, setTime] = useState('');
-    const [array, setArray] = useState([{X:0},{X:0},{X:0},{X:0},{X:0},{X:0},{X:5},{X:5},{X:5},{X:5},{X:5},{X:5},{X:0},{X:0},{X:0},{X:0},{X:0},{X:0},{X:0},{X:0},{X:0},{X:0},{X:0},{X:5},{X:5},{X:5},{X:5},{X:5},{X:5},{X:0},{X:0},{X:0},{X:0},{X:0},{X:0},{X:0},{X:0},{X:0},{X:0},{X:0},{X:5},{X:5},{X:5},{X:5},{X:5},{X:5},{X:0},{X:0},{X:0},{X:0},{X:0},{X:0},{X:0},{X:0},{X:0},{X:0},{X:0},{X:5},{X:5},{X:5},{X:5},{X:5},{X:5},{X:0},{X:0},{X:0},{X:0},{X:0}]);
+    const [array, setArray] = useState([{Time:0},{Time:0},{Time:0},{Time:0},{Time:0},{Time:0},{Time:5},{Time:5},{Time:5},{Time:5},{Time:5},{Time:5},{Time:0},{Time:0},{Time:0},{Time:0},{Time:0},{Time:0},{Time:0},{Time:0},{Time:0},{Time:0},{Time:0},{Time:5},{Time:5},{Time:5},{Time:5},{Time:5},{Time:5},{Time:0},{Time:0},{Time:0},{Time:0},{Time:0},{Time:0},{Time:0},{Time:0},{Time:0},{Time:0},{Time:0},{Time:5},{Time:5},{Time:5},{Time:5},{Time:5},{Time:5},{Time:0},{Time:0},{Time:0},{Time:0},{Time:0},{Time:0},{Time:0},{Time:0},{Time:0},{Time:0},{Time:0},{Time:5},{Time:5},{Time:5},{Time:5},{Time:5},{Time:5},{Time:0},{Time:0},{Time:0},{Time:0},{Time:0}]);
     const timeoutRef = useRef(null);
     function validate() {
-        setArray((prevState)=>[...prevState,{X:(Math.random()>=0.5)? 5 : 0}].slice(1))
+        setArray((prevState)=>[...prevState,{Time:(Math.random()>=0.5)? 5 : 0}].slice(1))
     }
 
     useEffect(() => {
@@ -33,10 +33,10 @@ function Chart() {
                 margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
                 <CartesianGrid strokeDasharray="3 3" />
                 
-                <YAxis />
+                <YAxis label="AVG Temp" />
                 <Tooltip />
                 <Legend />
-                <Line type="monotone" dataKey="X" stroke="#8884d8" />
+                <Line type="monotone" dataKey="Time" stroke="#8884d8" />
 
             </LineChart>
     
