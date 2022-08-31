@@ -6,13 +6,15 @@ import Paper from '@mui/material/Paper';
 import { useHistory } from "react-router-dom";
 import Stopwatch from "../Stopwatch/Stopwatch";
 // import Stopwatch from "./Stopwatch";
+import Chart from "../Chart/Chart"
 
 function ChartPage() {
   return (
     <div className="container">
       <div className="grid">
         <h3>Total HTUs: </h3>
-        <div id = "box"/>
+        <Chart />
+        {/* <div id = "box"/> */}
         <Stopwatch />
       </div>
     </div>
