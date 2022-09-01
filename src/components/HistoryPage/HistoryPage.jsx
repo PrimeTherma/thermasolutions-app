@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
+import useReduxStore from "../../hooks/useReduxStore";
 
 function HistoryPage() {
 
+  const store = useReduxStore();
   const dispatch = useDispatch();
 
   // state for return - ternary
