@@ -3,9 +3,11 @@ import { put, takeEvery, takeLatest } from 'redux-saga/effects';
 
 // Gets diagnostics
 function* getDiagnostics() {
+    console.log('in SAGA getDiagnostics');
+
     try {
         const response = yield axios.get('/diagnostics');
-        console.log('this is response', response);
+        // console.log('this is response', response);
 
         // Stores diagnostics in reducer
         yield put({type: "SET_DIAGNOSTICS", payload: response.data});
