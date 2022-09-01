@@ -22,10 +22,11 @@ function Chart() {
     }
 
     function getLastDiagnostics() {
-        for (let i=0; i<deviceDiagnostics.length; i++) {
-            setTimeout(() => { axios.post("/api/diagnostics", deviceDiagnostics[i])
-            }, "20000")
-        }
+        
+        setTimeout(() => { for (let i=0; i<deviceDiagnostics.length; i++) {
+            dispatch({type: 'POST_DIAGNOSTICS', payload: deviceDiagnostics[i]})
+        }}, "2000")
+        
     };
 
     useEffect(() => {
@@ -45,6 +46,7 @@ function Chart() {
 
     useEffect(()=>{
         dispatch({type: 'FETCH_DEVICE_DIAGNOSTICS' });
+        // getLastDiagnostics();
     },[]);
 
     return (
@@ -68,6 +70,8 @@ function Chart() {
                 <ReferenceArea y1={40.8} y2={42} label="Cancer Kill Zone" />
     
             </LineChart>
+
+            <button onClick={(getLastDiagnostics)}>POST</button>
     
         </div>
     );
