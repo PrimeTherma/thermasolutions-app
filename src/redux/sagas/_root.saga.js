@@ -3,6 +3,7 @@ import loginSaga from './login.saga';
 import registrationSaga from './registration.saga';
 import userSaga from './user.saga';
 import procedureSaga from './procedure.saga';
+import deviceDiagnosticsSaga from './deviceDiagnostics.saga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -16,6 +17,7 @@ export default function* rootSaga() {
     loginSaga(), // login saga is now registered
     registrationSaga(),
     userSaga(),
-    procedureSaga(),
+    procedureSaga(), // procedure saga 
+    deviceDiagnosticsSaga(), // device diagnostics
   ]);
 }

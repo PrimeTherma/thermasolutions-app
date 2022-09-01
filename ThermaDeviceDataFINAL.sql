@@ -1,4 +1,4 @@
-CREATE TABLE thermaDevice(
+CREATE TABLE thermadevice(
    id            SERIAL  NOT NULL PRIMARY KEY
   ,procedure_id  INT  NOT NULL
   ,interval_time TIME  NOT NULL
@@ -12,7 +12,7 @@ CREATE TABLE thermaDevice(
   ,t6            NUMERIC(5,2) NOT NULL
   ,t7            NUMERIC(5,2) NOT NULL
 );
-INSERT INTO thermaDevice(id,procedure_id,interval_time,avg_temp,interval_htu,t1,t2,t3,t4,t5,t6,t7) VALUES
+INSERT INTO thermadevice(id,procedure_id,interval_time,avg_temp,interval_htu,t1,t2,t3,t4,t5,t6,t7) VALUES
  (1,1,'0:00:00',35.2,0,35.2,35.2,35.2,35.2,35.2,35.2,35.2)
 ,(2,1,'0:00:20',36.63,0,36.63,36.63,36.63,36.63,36.63,36.63,36.63)
 ,(3,1,'0:00:40',37.22,0,37.22,37.22,37.22,37.22,37.22,37.22,37.22)

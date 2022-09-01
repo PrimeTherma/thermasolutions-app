@@ -31,7 +31,7 @@ CREATE TABLE "diagnostics" (
 	,"t7"            NUMERIC(5,2) NOT NULL
 );
 
-CREATE TABLE "device"(
+CREATE TABLE "thermadevice"(
 	"id"            SERIAL PRIMARY KEY
 	,"procedure_id"  INT  NOT NULL
 	,"interval_time" time  NOT NULL

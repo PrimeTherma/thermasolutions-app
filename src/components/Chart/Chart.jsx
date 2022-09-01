@@ -4,6 +4,7 @@ import {LineChart, CartesianGrid, YAxis, XAxis, Tooltip, Legend, Line, Label, Re
 
 
 function Chart() {
+    const deviceDiagnostics = useSelector((store) => store.deviceDiagnostics);
     const [response, setResponse] = useState([]);
     const [time, setTime] = useState('');
     const [array, setArray] = useState([{Temp:39, Time:'0 s'},{Temp:39, Time:'1 s'},{Temp:39, Time:'2 s'},{Temp:39, Time:'3 s'},{Temp:39, Time:'4 s'},{Temp:39, Time:'5 s'},{Temp:39, Time:'6 s'},{Temp:42, Time:'6 s'},{Temp:42, Time:'7 s'},{Temp:42, Time:'8 s'},{Temp:42, Time:'9 s'},{Temp:42, Time:'10 s'}]);
@@ -19,13 +20,18 @@ function Chart() {
             
         }
         let interval = 6000;
-        let speed = 1000;
+        let speed = 3000;
         for(let i=1; i<interval; i++) {
             timeoutRef.current = setTimeout(()=> {
             timeoutRef.current = null;
             validate()
             }, i*speed);
         }
+    },[]);
+
+
+    useEffect(()=>{
+        dispatch({type: 'FETCH_DEVICE_DIAGNOSTICS' });
     },[]);
 
     return (
