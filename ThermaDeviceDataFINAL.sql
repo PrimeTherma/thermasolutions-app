@@ -1,7 +1,7 @@
 CREATE TABLE thermaDevice(
    id            SERIAL  NOT NULL PRIMARY KEY
   ,procedure_id  INT  NOT NULL
-  ,interval_time DATETIME  NOT NULL
+  ,interval_time TIME  NOT NULL
   ,avg_temp      NUMERIC(5,2) NOT NULL
   ,interval_htu  NUMERIC(12,10) NOT NULL
   ,t1            NUMERIC(5,2) NOT NULL
