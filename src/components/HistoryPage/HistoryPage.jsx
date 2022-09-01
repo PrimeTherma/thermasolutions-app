@@ -35,6 +35,12 @@ function HistoryPage() {
     dispatch({type: "DELETE_DIAGNOSTIC", payload: event.target.value})
   }
 
+  const deleteAll = () => {
+    console.log("in deleteAll");
+
+    dispatch({type: "DELETE_ALL"});
+  }
+
   const hideDiagnostics = () => {
     console.log("in hideDiagnostics");
 
@@ -72,6 +78,7 @@ function HistoryPage() {
               <TableCell>T5</TableCell>
               <TableCell>T6</TableCell>
               <TableCell>T7</TableCell>
+              <TableCell><Button onClick={deleteAll}>DELETE ALL</Button></TableCell>
             </TableRow>
           </TableHead>
           <TableBody>

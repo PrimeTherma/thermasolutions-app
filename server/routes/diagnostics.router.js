@@ -79,9 +79,9 @@ router.delete("/individual-procedure/:id", (req, res) => {
 // Deletes all of diagnostics data
 router.delete("/", (req, res) => {
   
-    const queryText = `DELETE * FROM "diagnostics";`;
+    const queryText = `DELETE FROM "diagnostics";`;
     pool
-      .query(queryText, [req.params.placeId, req.user.id])
+      .query(queryText)
       .then(function (response) {
         res.sendStatus(200);
       })
