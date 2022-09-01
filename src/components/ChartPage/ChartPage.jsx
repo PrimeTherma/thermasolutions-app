@@ -1,8 +1,10 @@
 
 import "./ChartPage.css";
-import Box from '@mui/material/Box';
-import Paper from '@mui/material/Paper';
 import { useHistory } from "react-router-dom";
+
+import Stopwatch from "../Stopwatch/Stopwatch";
+
+
 import Chart from "../Chart/Chart"
 import Stopwatch from "../Stopwatch/Stopwatch";
 import { useState, useEffect, useRef } from 'react';
