@@ -58,6 +58,24 @@ router.put("/", (req, res) => {
       });
 });
 
+// Deletes individual diagnostics
+router.delete("/individual-procedure/:id", (req, res) => {
+    console.log('this is req.params', req.params);
+
+    const procedure_id = req.params.id;
+  
+    const queryText = `DELETE FROM "diagnostics" WHERE procedure_id = $1;`;
+    pool
+      .query(queryText, [procedure_id])
+      .then(function (response) {
+        res.sendStatus(200);
+      })
+      .catch(function (error) {
+        console.log(error);
+        res.sendStatus(500);
+      });
+});
+
 // Deletes all of diagnostics data
 router.delete("/", (req, res) => {
   

@@ -16,9 +16,21 @@ function* getDiagnostics() {
     }
 }
 
+function* deleteDiagnostic(action) {
+    console.log('in deleteDiagnostic, this is action', action.payload);
+
+    try {
+        yield axios.delete(`/diagnostics/individual-procedure/${action.payload}`);
+        yield put({type: "FETCH_DIAGNOSTICS"});
+    } catch {
+        console.log('Error in deleteDiagnostic');
+    }
+}
+
 // Watches for dispatches anywhere on app
 function* diagnosticsSaga() {
     yield takeLatest("FETCH_DIAGNOSTICS", getDiagnostics);
+    yield takeEvery("DELETE_DIAGNOSTIC", deleteDiagnostic);
 }
 
 export default diagnosticsSaga;

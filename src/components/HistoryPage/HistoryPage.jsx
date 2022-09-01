@@ -29,6 +29,12 @@ function HistoryPage() {
     dispatch({ type: "FETCH_DIAGNOSTICS" });
   };
 
+  const handleDelete = (event) => {
+    console.log("in handleDelete, this is event.target.value", event.target.value);
+
+    dispatch({type: "DELETE_DIAGNOSTIC", payload: event.target.value})
+  }
+
   const hideDiagnostics = () => {
     console.log("in hideDiagnostics");
 
@@ -82,7 +88,7 @@ function HistoryPage() {
                 <TableCell scope="row">{diagnostic.t6}</TableCell>
                 <TableCell scope="row">{diagnostic.t7}</TableCell>  
                 <TableCell scope="row">
-                  <Button>Delete</Button>
+                  <Button onClick={(event) => handleDelete(event)} value={diagnostic.procedure_id}>Delete</Button>
                 </TableCell>
               </TableRow>
             ))}
