@@ -40,11 +40,24 @@ function* deleteAllDiagnostics() {
     }
 }
 
+function* postDiagnostics(action) {
+    console.log('in postDiagnostics');
+    console.log('action.payload', action.payload);
+
+    try {
+        yield axios.post('/diagnostics', action.payload);
+        yield put({type: "ADD_DIAGNOSTICS"});
+    } catch (error) {
+        console.log('Error in postDiagnostics', error);
+    }
+}
+
 // Watches for dispatches anywhere on app
 function* diagnosticsSaga() {
     yield takeLatest("FETCH_DIAGNOSTICS", getDiagnostics);
     yield takeEvery("DELETE_DIAGNOSTIC", deleteDiagnostic);
     yield takeLatest("DELETE_ALL", deleteAllDiagnostics);
+    yield takeLatest("POST_DIAGNOSTICS", postDiagnostics) 
 }
 
 export default diagnosticsSaga;
