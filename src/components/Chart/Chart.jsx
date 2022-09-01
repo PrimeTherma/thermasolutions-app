@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { useState, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
@@ -10,15 +11,22 @@ function Chart() {
     const history = useHistory();
 
     const deviceDiagnostics = useSelector((store) => store.deviceDiagnostics);
+    const [lastDiagnostics, setLastDiagnostics] = useState([]);
     const [response, setResponse] = useState([]);
     const [time, setTime] = useState('');
     const [array, setArray] = useState([{Temp:39, Time:'0 s'},{Temp:39, Time:'1 s'},{Temp:39, Time:'2 s'},{Temp:39, Time:'3 s'},{Temp:39, Time:'4 s'},{Temp:39, Time:'5 s'},{Temp:39, Time:'6 s'},{Temp:42, Time:'6 s'},{Temp:42, Time:'7 s'},{Temp:42, Time:'8 s'},{Temp:42, Time:'9 s'},{Temp:42, Time:'10 s'}]);
-    // ,{Temp:42},{Temp:42},{Temp:39},{Temp:39},{Temp:39},{Temp:39},{Temp:39},{Temp:39},{Temp:39},{Temp:39}]);
-        // ,{Temp:39},{Temp:39},{Temp:39},{Temp:42},{Temp:42},{Temp:42},{Temp:42},{Temp:42},{Temp:42},{Temp:39},{Temp:39},{Temp:39},{Temp:39},{Temp:39},{Temp:39},{Temp:39},{Temp:39},{Temp:39},{Temp:39},{Temp:39},{Temp:42},{Temp:42},{Temp:42},{Temp:42},{Temp:42},{Temp:42},{Temp:39},{Temp:39},{Temp:39},{Temp:39},{Temp:39},{Temp:39},{Temp:39},{Temp:39},{Temp:39},{Temp:39},{Temp:39},{Temp:42},{Temp:42},{Temp:42},{Temp:42},{Temp:42},{Temp:42},{Temp:39},{Temp:39},{Temp:39},{Temp:39},{Temp:39}]);
+
     const timeoutRef = useRef(null);
     function validate() {
         setArray((prevState)=>[...prevState,{Temp:(Math.random()>= 0.5)? 42 : 39, Time:'11 s'}].slice(1))
     }
+
+    function getLastDiagnostics() {
+        for (let i=0; i<deviceDiagnostics.length; i++) {
+            setTimeout(() => { axios.post("/api/diagnostics", deviceDiagnostics[i])
+            }, "20000")
+        }
+    };
 
     useEffect(() => {
         if (timeoutRef.current !== null) {
