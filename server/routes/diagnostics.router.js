@@ -41,14 +41,15 @@ router.get("/", (req, res) => {
 // });
 
 // Updates notes
-router.put("/", (req, res) => {
-    // console.log('this is req.body', req.body);
+router.put("/:id", (req, res) => {
+    console.log('this is req.params', req.params);
+
     const notes = req.body.notes;
-    const procedure_id = req.body.procedure_id;
+    const id = req.params.id;
     
-    const queryText = `UPDATE "diagnostics" SET "notes" = $1 WHERE procedure_id = $2;`;
+    const queryText = 'UPDATE "diagnostics" SET "notes" = $1 WHERE "id" = $2;';
     pool
-      .query(queryText, [notes, procedure_id])
+      .query(queryText, [notes, id])
       .then(function (response) {
         res.sendStatus(200);
       })

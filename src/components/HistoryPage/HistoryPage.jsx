@@ -11,13 +11,16 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
+import Input from "@mui/material/Input";
 
 function HistoryPage() {
   const store = useReduxStore();
   const dispatch = useDispatch();
 
-  // state for return - ternary
+  // states
   const [show, setShow] = useState(false);
+  const [showInput, setShowInput] = useState(false);
+  const [noteInput, setNoteInput] = useState('');
 
   // Gets diagnostics
   const getDiagnostics = () => {
@@ -28,6 +31,17 @@ function HistoryPage() {
 
     dispatch({ type: "FETCH_DIAGNOSTICS" });
   };
+
+  const handleShowInput = (event) => {
+    console.log('in showInput');
+
+    setShowInput(true);
+  }
+
+  const handleEditSubmit = (event) => {
+    console.log('in handleEditSubmit');
+
+  }
 
   const handleDelete = (event) => {
     console.log("in handleDelete, this is event.target.value", event.target.value);
@@ -53,6 +67,46 @@ function HistoryPage() {
       <div className="grid">
         <Button onClick={getDiagnostics}>Diagnostics</Button>
       </div>
+      <TableContainer>
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell>Date/Time</TableCell>
+              <TableCell>Total HTUs</TableCell>
+              <TableCell>Notes</TableCell>
+              <TableCell><Button>Export ⤴</Button>
+              </TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            <TableRow>
+              <TableCell></TableCell>
+              <TableCell></TableCell>
+              <TableCell>{ !showInput ? (
+                      <>
+                        <Button onClick={(event) => handleShowInput(event)}>✏️</Button>
+                      </>
+                    ) : (
+                      <>
+                        <Input
+                          sx={{ width: 40, padding: 1 }}
+                          type="text"
+                          onChange={(event) =>
+                            noteInput(event.target.value)
+                          }
+                        />
+                        <Button
+                          onClick={(event) => handleEditSubmit(event)}
+                        >
+                          Set
+                        </Button>
+                      </>
+                    )}</TableCell>
+              <TableCell><Button>🗑</Button></TableCell>
+            </TableRow>
+          </TableBody>
+        </Table>
+      </TableContainer>
     </div>
   ) : (
     <>
