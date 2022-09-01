@@ -7,14 +7,13 @@ const router = express.Router();
  */
 router.get('/', (req, res) => {
     // GET route code here
-    console.log( 'in router.get history/id:', req.params.procedureId );
-    let id = req.params.procedureId
+    console.log( 'in router.get deviceDiagnostics router: ');
     const queryText = `SELECT * FROM "thermadevice" WHERE "procedure_id" = $1 ORDER BY "id" ASC;`;
-    pool.query(queryText, [id])
+    pool.query(queryText, [1])
     .then(results => {
         res.send(results.rows);
     }).catch( ( error ) => {
-        console.log('error in router.get/:id', error);
+        console.log('error in router.get deviceDiagnostics: ', error);
         res.sendStatus( 500 );
     });
 });
