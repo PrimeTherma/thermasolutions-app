@@ -18,15 +18,30 @@ CREATE TABLE "procedure" (
 
 CREATE TABLE "diagnostics" (
 	"id" SERIAL PRIMARY KEY,
-	"procedure_id" integer references "user",
-	"interval_time" interval,
-	"avg_temp" NUMERIC (5, 3),
-	"interval_htu" NUMERIC (5, 3),
-	"t1" NUMERIC (5, 3),
-	"t2" NUMERIC (5, 3),
-	"t3" NUMERIC (5, 3),
-	"t4" NUMERIC (5, 3),
-	"t5" NUMERIC (5, 3),
-	"t6" NUMERIC (5, 3),
-	"t7" NUMERIC (5, 3)
+	"procedure_id" integer references "user"
+	,"interval_time" time  NOT NULL
+	,"avg_temp"      NUMERIC(5,2) NOT NULL
+	,"interval_htu"  NUMERIC(12,10) NOT NULL
+	,"t1"            NUMERIC(5,2) NOT NULL
+	,"t2"            NUMERIC(5,2) NOT NULL
+	,"t3"            NUMERIC(5,2) NOT NULL
+	,"t4"            NUMERIC(5,2) NOT NULL
+	,"t5"            NUMERIC(5,2) NOT NULL
+	,"t6"            NUMERIC(5,2) NOT NULL
+	,"t7"            NUMERIC(5,2) NOT NULL
+);
+
+CREATE TABLE "device"(
+	"id"            SERIAL PRIMARY KEY
+	,"procedure_id"  INT  NOT NULL
+	,"interval_time" time  NOT NULL
+	,"avg_temp"      NUMERIC(5,2) NOT NULL
+	,"interval_htu"  NUMERIC(12,10) NOT NULL
+	,"t1"            NUMERIC(5,2) NOT NULL
+	,"t2"            NUMERIC(5,2) NOT NULL
+	,"t3"            NUMERIC(5,2) NOT NULL
+	,"t4"            NUMERIC(5,2) NOT NULL
+	,"t5"            NUMERIC(5,2) NOT NULL
+	,"t6"            NUMERIC(5,2) NOT NULL
+	,"t7"            NUMERIC(5,2) NOT NULL
 );
