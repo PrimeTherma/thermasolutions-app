@@ -16,4 +16,16 @@ router.post('/', (req, res) => {
         })
 });
 
+router.get('/', (req, res) => {
+    const sqlText = `SELECT MAX(id) FROM "procedure";`;
+    pool.query(sqlText)
+        .then((result) => {
+            res.send(result.rows);
+                })
+        .catch((error) => {
+            console.log(`ERROR saving new procedure id. in the Get procedure router`, error);
+            res.sendStatus(500);
+        })
+})
+
 module.exports = router;
