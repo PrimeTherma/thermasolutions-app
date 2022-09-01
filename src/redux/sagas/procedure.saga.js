@@ -8,6 +8,9 @@ function* setProcedure() {
             withCredentials: true,
         }
         yield axios.post('/api/procedure', config);
+        // get request to save procedure id in the store for later use
+        const response = yield axios.get('/api/procedure', config);
+        yield put({ type: 'SET_PROCEDURE', payload: response.data })
     } catch (error) {
         console.log(' Failed in setProcedure post request failed', error);
     }
