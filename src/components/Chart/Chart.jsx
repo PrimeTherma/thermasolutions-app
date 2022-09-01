@@ -1,9 +1,14 @@
-import {useState, useEffect, useRef} from 'react';
+import { useState, useEffect, useRef } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 import {LineChart, CartesianGrid, YAxis, XAxis, Tooltip, Legend, Line, Label, ReferenceArea} from 'recharts'
 
 
 function Chart() {
+    const dispatch = useDispatch();
+    const history = useHistory();
+
     const deviceDiagnostics = useSelector((store) => store.deviceDiagnostics);
     const [response, setResponse] = useState([]);
     const [time, setTime] = useState('');
