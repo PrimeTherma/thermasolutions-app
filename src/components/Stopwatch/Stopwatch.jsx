@@ -28,7 +28,7 @@ return(
       {/* <span>{("0" + (time / 10) % 1000).slice(-2)};</span> This is Milliseconds*/} 
     </h1>
     <div>
-      <button onClick={() => setStart(true)}>Start</button>
+      {/* <button onClick={() => setStart(true)}>Start</button> */}
       <button onClick={() => setStart(false)}>Stop</button>
       <button onClick={() => {setTime(0); setStart(false)}}>Reset</button>
     </div>

@@ -1,10 +1,6 @@
 
 import "./ChartPage.css";
 import { useHistory } from "react-router-dom";
-
-import Stopwatch from "../Stopwatch/Stopwatch";
-
-
 import Chart from "../Chart/Chart"
 import Stopwatch from "../Stopwatch/Stopwatch";
 import { useState, useEffect, useRef } from 'react';
@@ -15,7 +11,7 @@ function ChartPage() {
   const dispatch = useDispatch();
   const history = useHistory();
   const currentProcedure = useSelector((store) => store.setProcedure);
-  console.log('Miners way', currentProcedure[0].max);
+  console.log('Miners way', currentProcedure[0]?.max);
 
 
   return (
