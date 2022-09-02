@@ -21,12 +21,16 @@ function Chart() {
         setArray((prevState)=>[...prevState,{Temp:(Math.random()>= 0.5)? 42 : 39, Time:'11 s'}].slice(1))
     }
 
-    function getLastDiagnostics() {
+    const sleep = (milliseconds) => {
+        return new Promise(resolve => setTimeout(resolve, milliseconds))
+    }
+
+    const getLastDiagnostics = async () => {
         
-        setTimeout(() => { for (let i=0; i<deviceDiagnostics.length; i++) {
+        for (let i=0; i<deviceDiagnostics.length; i++) {
+            await sleep (20000)
             dispatch({type: 'POST_DIAGNOSTICS', payload: deviceDiagnostics[i]})
-        }}, "2000")
-        
+        }
     };
 
     useEffect(() => {
