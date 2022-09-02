@@ -138,7 +138,7 @@ function HistoryPage() {
           <TableBody>
             {store.diagnostics.map((diagnostic, i) => (
               <TableRow key={i}>
-                <TableCell scope="row">{diagnostic.interval_time.hours} hrs. {diagnostic.interval_time.minutes} min.</TableCell>
+                <TableCell scope="row">{diagnostic.interval_time}</TableCell>
                 <TableCell scope="row">{diagnostic.interval_htu}</TableCell>
                 <TableCell scope="row">{diagnostic.avg_temp}</TableCell>
                 <TableCell scope="row">{diagnostic.t1}</TableCell>

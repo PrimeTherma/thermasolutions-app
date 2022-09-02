@@ -23,7 +23,7 @@ router.get("/", (req, res) => {
 router.post("/", async (req, res) => {
   const client = await pool.connect();
 
-  const procedcureId = req.body.procedure_id;
+  const procedureId = req.body.procedure_id;
   const intervalTime = req.body.interval_time;
   const avgTemp = req.body.avg_temp;
   const intervalHTU = req.body.interval_htu;
@@ -38,7 +38,7 @@ router.post("/", async (req, res) => {
   try {
     await client.query("BEGIN");
     const results = await client.query('INSERT INTO "diagnostics" ("procedure_id", "interval_time", "avg_temp", "interval_htu", "t1", "t2", "t3", "t4", "t5", "t6", "t7") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11);',
-    [procedcureId, intervalTime, avgTemp, intervalHTU, t1, t2, t3, t4, t5, t6, t7]
+    [procedureId, intervalTime, avgTemp, intervalHTU, t1, t2, t3, t4, t5, t6, t7]
     );
 
     await client.query("COMMIT");
