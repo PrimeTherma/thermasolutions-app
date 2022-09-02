@@ -1,7 +1,6 @@
 
 import "./ChartPage.css";
 import { useHistory } from "react-router-dom";
-
 import Chart from "../Chart/Chart"
 import Stopwatch from "../Stopwatch/Stopwatch";
 import { useState, useEffect, useRef } from 'react';
