@@ -43,18 +43,6 @@ function HistoryPage() {
 
   }
 
-  const handleDelete = (event) => {
-    console.log("in handleDelete, this is event.target.value", event.target.value);
-
-    dispatch({type: "DELETE_DIAGNOSTIC", payload: event.target.value})
-  }
-
-  const deleteAll = () => {
-    console.log("in deleteAll");
-
-    dispatch({type: "DELETE_ALL"});
-  }
-
   const hideDiagnostics = () => {
     console.log("in hideDiagnostics");
 
