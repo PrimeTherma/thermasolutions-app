@@ -21,17 +21,6 @@ function Chart() {
         setArray((prevState)=>[...prevState,{Temp:(Math.random()>= 0.5)? 42 : 39, Time:'11 s'}].slice(1))
     }
 
-    const sleep = (milliseconds) => {
-        return new Promise(resolve => setTimeout(resolve, milliseconds))
-    }
-
-    const getLastDiagnostics = async () => {
-        
-        for (let i=0; i<deviceDiagnostics.length; i++) {
-            await sleep (20000)
-            dispatch({type: 'POST_DIAGNOSTICS', payload: deviceDiagnostics[i]})
-        }
-    };
 
     useEffect(() => {
         if (timeoutRef.current !== null) {
@@ -47,12 +36,7 @@ function Chart() {
         }
     },[]);
 
-
-    useEffect(()=>{
-        dispatch({type: 'FETCH_DEVICE_DIAGNOSTICS' });
-        // getLastDiagnostics();
-    },[]);
-
+    
     return (
         <div>
             <h1>{time}</h1>
@@ -75,7 +59,7 @@ function Chart() {
     
             </LineChart>
 
-            <button onClick={(getLastDiagnostics)}>POST</button>
+            {/* <button onClick={(getLastDiagnostics)}>POST</button> */}
     
         </div>
     );
