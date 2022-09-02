@@ -67,7 +67,7 @@ function HistoryPage() {
       <div className="grid">
         <Button onClick={getDiagnostics}>Diagnostics</Button>
       </div>
-      <TableContainer>
+      <TableContainer sx={{width: "85%", margin: "auto"}} component={Paper}>
         <Table>
           <TableHead>
             <TableRow>
@@ -113,6 +113,8 @@ function HistoryPage() {
       <Button onClick={hideDiagnostics}>Hide</Button>
       <TableContainer
         sx={{
+          height: 500,
+          width: "85%",
           overflow: "hidden",
           overflowY: "scroll",
           margin: "auto",
@@ -132,7 +134,6 @@ function HistoryPage() {
               <TableCell>T5</TableCell>
               <TableCell>T6</TableCell>
               <TableCell>T7</TableCell>
-              <TableCell><Button onClick={deleteAll}>DELETE ALL</Button></TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -147,10 +148,7 @@ function HistoryPage() {
                 <TableCell scope="row">{diagnostic.t4}</TableCell>
                 <TableCell scope="row">{diagnostic.t5}</TableCell>
                 <TableCell scope="row">{diagnostic.t6}</TableCell>
-                <TableCell scope="row">{diagnostic.t7}</TableCell>  
-                <TableCell scope="row">
-                  <Button onClick={(event) => handleDelete(event)} value={diagnostic.procedure_id}>Delete</Button>
-                </TableCell>
+                <TableCell scope="row">{diagnostic.t7}</TableCell>
               </TableRow>
             ))}
           </TableBody>
