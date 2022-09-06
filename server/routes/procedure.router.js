@@ -38,6 +38,23 @@ router.get("/all", (req, res) => {
     });
 });
 
+// Gets history information for all procedures
+router.get("/all-history", (req, res) => {
+  const sqlText = 'SELECT * FROM procedure ORDER BY id';
+  pool
+    .query(sqlText)
+    .then((result) => {
+      res.send(result.rows);
+    })
+    .catch((error) => {
+      console.log(
+        'ERROR saving new procedure id. in the Get procedure router',
+        error
+      );
+      res.sendStatus(500);
+    });
+});
+
 // Updates notes
 router.put("/:id", (req, res) => {
   console.log("this is req.params", req.params);
