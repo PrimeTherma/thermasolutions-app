@@ -16,7 +16,20 @@ function* setProcedure() {
     }
 }
 
+// Generator function to get all procedure history
+function* getAllProcedures() {
+    console.log('in getAllProcedures');
+
+    try {
+        const response = yield axios.get('/api/procedure/all-history');
+        yield put({type: "SET_ALL_PROCEDURES", payload: response.data});
+    } catch (error) {
+        console.log('Error in getAllProcedures');
+    }
+}
+
 function* procedureSaga() {
     yield takeLatest('ADD_NEW_PROCEDURE', setProcedure);
+    yield takeLatest("FETCH_ALL_HISTORY", getAllProcedures);
 }
 export default procedureSaga;
