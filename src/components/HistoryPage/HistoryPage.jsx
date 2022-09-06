@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import useReduxStore from "../../hooks/useReduxStore";
 
@@ -17,6 +17,11 @@ function HistoryPage() {
   const store = useReduxStore();
   const dispatch = useDispatch();
 
+  // Gets procedure on page load
+  useEffect(() => {
+    dispatch({type: "FETCH_PROCEDURE"});
+  }, []);
+
   // states
   const [show, setShow] = useState(false);
   const [showInput, setShowInput] = useState(false);
@@ -32,17 +37,23 @@ function HistoryPage() {
     dispatch({ type: "FETCH_DIAGNOSTICS" });
   };
 
+  // Shows text input for edit function
   const handleShowInput = (event) => {
     console.log('in showInput');
 
     setShowInput(true);
   }
 
+  // Edits notes for current procedure
   const handleEditSubmit = (event) => {
     console.log('in handleEditSubmit');
+    
+    dispatch({type: "EDIT_NOTES", payload: {notes: noteInput, id: event.target.value}});
 
+    setShowInput(false);
   }
 
+  // Hides diagnostics table
   const hideDiagnostics = () => {
     console.log("in hideDiagnostics");
 
@@ -60,6 +71,7 @@ function HistoryPage() {
           <TableHead>
             <TableRow>
               <TableCell>Date/Time</TableCell>
+              <TableCell>Total Time</TableCell>
               <TableCell>Total HTUs</TableCell>
               <TableCell>Notes</TableCell>
               <TableCell><Button>Export ⤴</Button>
@@ -68,23 +80,25 @@ function HistoryPage() {
           </TableHead>
           <TableBody>
             <TableRow>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
+              <TableCell>{store.procedure[0]?.date}</TableCell>
+              <TableCell>{store.procedure[0]?.total_time}</TableCell>
+              <TableCell>{store.procedure[0]?.total_htu}</TableCell>
               <TableCell>{ !showInput ? (
                       <>
-                        <Button onClick={(event) => handleShowInput(event)}>✏️</Button>
+                        <Button onClick={(event) => handleShowInput(event)}>{store.procedure[0]?.notes} ✏️</Button>
                       </>
                     ) : (
                       <>
                         <Input
-                          sx={{ width: 40, padding: 1 }}
+                          sx={{ width: 80, padding: 1 }}
                           type="text"
                           onChange={(event) =>
-                            noteInput(event.target.value)
+                            setNoteInput(event.target.value)
                           }
                         />
                         <Button
                           onClick={(event) => handleEditSubmit(event)}
+                          value={store.procedure[0]?.id}
                         >
                           Set
                         </Button>
