@@ -14,20 +14,17 @@ function Chart() {
     const [lastDiagnostics, setLastDiagnostics] = useState([]);
     const [response, setResponse] = useState([]);
     const [time, setTime] = useState('');
-    const [array, setArray] = useState([{Temp:39, Time:'0 s'},{Temp:39, Time:'1 s'},{Temp:39, Time:'2 s'},{Temp:39, Time:'3 s'},{Temp:39, Time:'4 s'},{Temp:39, Time:'5 s'},{Temp:39, Time:'6 s'},{Temp:42, Time:'6 s'},{Temp:42, Time:'7 s'},{Temp:42, Time:'8 s'},{Temp:42, Time:'9 s'},{Temp:42, Time:'10 s'}]);
+    const [array, setArray] = useState([{Temp:35, Time: '00:00:00'}]);
+    
 
     const timeoutRef = useRef(null);
-    function validate() {
-        setArray((prevState)=>[...prevState,{Temp:(Math.random()>= 0.5)? 42 : 39, Time:'11 s'}].slice(1))
-    }
-
 
     useEffect(() => {
         if (timeoutRef.current !== null) {
             
         }
-        let interval = 6000;
-        let speed = 3000;
+        let interval = 2;
+        let speed = 0.1;
         for(let i=1; i<interval; i++) {
             timeoutRef.current = setTimeout(()=> {
             timeoutRef.current = null;
@@ -35,6 +32,17 @@ function Chart() {
             }, i*speed);
         }
     },[]);
+
+    const sleep = (milliseconds) => {
+        return new Promise(resolve => setTimeout(resolve, milliseconds))
+    }
+
+    const validate = async (Object) => {
+        for (let i=0; i<deviceDiagnostics.length; i++) {
+            await sleep (500)
+            setArray((prevState)=>[...prevState,{Temp: Number(deviceDiagnostics[i].avg_temp), Time: String(deviceDiagnostics[i].interval_time)}])
+        }
+    }
 
     
     return (
