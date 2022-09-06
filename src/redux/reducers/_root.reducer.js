@@ -5,7 +5,7 @@ import user from './user.reducer';
 import diagnostics from './diagnostics.reducer';
 
 import deviceDiagnostics from './deviceDiagnostics.reducer';
-import setProcedure from './setProcedure.reducer';
+import procedure from './setProcedure.reducer';
 
 
 // rootReducer is the primary reducer for our entire project
@@ -21,7 +21,7 @@ const rootReducer = combineReducers({
   diagnostics, // contains the history of diagnostics
 
   deviceDiagnostics, // will have an id and username if someone is logged in with
-  setProcedure // This grabs the procedure id after hitting the start procedure button
+  procedure // This grabs the procedure id after hitting the start procedure button
 
 });
 
