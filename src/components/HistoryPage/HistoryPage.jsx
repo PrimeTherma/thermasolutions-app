@@ -92,6 +92,7 @@ function HistoryPage() {
       <div className="grid">
         <Button onClick={getDiagnostics}>Diagnostics</Button>
         <span><Button disabled={!store.user.access_level === 1} onClick={getAllHistory}>All Procedures</Button></span>
+        <Button onClick={exportData} disabled={!store.user.access_level === 1}>Export Diagnostics ⤴</Button>
       </div>
       <div>
       <TableContainer
@@ -110,8 +111,6 @@ function HistoryPage() {
               <TableCell>Total Time</TableCell>
               <TableCell>Total HTUs</TableCell>
               <TableCell>Notes</TableCell>
-                <TableCell><Button onClick={exportData}>Export ⤴</Button>
-              </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -150,6 +149,7 @@ function HistoryPage() {
   ) : (
     <>
       <Button onClick={hideDiagnostics}>Hide</Button>
+      <Button onClick={exportData} disabled={!store.user.access_level === 1}>Export Diagnostics ⤴</Button>
       <TableContainer
         sx={{
           height: 500,
