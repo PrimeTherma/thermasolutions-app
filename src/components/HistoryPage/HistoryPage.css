@@ -1,0 +1,11 @@
+.historyButtons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.diagnosticsButtons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
