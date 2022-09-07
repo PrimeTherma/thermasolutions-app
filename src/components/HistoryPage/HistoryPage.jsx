@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import useReduxStore from "../../hooks/useReduxStore";
+// Sheet JS 
+const XLSX = require("xlsx");
 
 // MUI Styling
 import Table from "@mui/material/Table";
@@ -20,8 +22,10 @@ function HistoryPage() {
   const history = useHistory();
 
   // Gets procedure on page load
+  // Moved "FETCH_DIAGNOSTICS to the useEffect so its easier to export data on button click"
   useEffect(() => {
-    dispatch({type: "FETCH_PROCEDURE"});
+    dispatch({ type: "FETCH_PROCEDURE" });
+    dispatch({ type: "FETCH_DIAGNOSTICS" });
   }, []);
 
   // states
@@ -36,7 +40,6 @@ function HistoryPage() {
     // Shows diagnostics table
     setShow(true);
 
-    dispatch({ type: "FETCH_DIAGNOSTICS" });
   };
 
   // Directs to all procedures - admin function only
@@ -60,6 +63,14 @@ function HistoryPage() {
     dispatch({type: "EDIT_NOTES", payload: {notes: noteInput, id: event.target.value}});
 
     setShowInput(false);
+  }
+  // Export Diagnostic Data
+  const exportData = () => {
+    console.log('attempting to export to excel file');
+    const workbook = XLSX.utils.book_new();
+    const ws = XLSX.utils.json_to_sheet(store.diagnostics);
+    XLSX.utils.book_append_sheet(workbook, ws, "Procedures");
+    XLSX.writeFile(workbook, "ProcedureDiagnostics.xlsx");
   }
 
   const deleteRow = (event) => {
@@ -99,7 +110,7 @@ function HistoryPage() {
               <TableCell>Total Time</TableCell>
               <TableCell>Total HTUs</TableCell>
               <TableCell>Notes</TableCell>
-              <TableCell><Button>Export ⤴</Button>
+                <TableCell><Button onClick={exportData}>Export ⤴</Button>
               </TableCell>
             </TableRow>
           </TableHead>
