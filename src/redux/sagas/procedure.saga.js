@@ -28,8 +28,22 @@ function* getAllProcedures() {
     }
 }
 
+function* deleteProcedure(action) {
+    console.log('in deleteProcedure');
+
+    try {
+        yield axios.delete(`/api/procedure/${action.payload}`);
+        yield put({type: "UNSET_PROCEDURE"});
+        yield put({type: "FETCH_PROCEDURE"});
+        yield put({type: "FETCH_ALL_HISTORY"})
+    } catch (error) {
+        console.log('Error in deleteProcedure');
+    }
+}
+
 function* procedureSaga() {
     yield takeLatest('ADD_NEW_PROCEDURE', setProcedure);
     yield takeLatest("FETCH_ALL_HISTORY", getAllProcedures);
+    yield takeEvery("DELETE_PROCEDURE", deleteProcedure);
 }
 export default procedureSaga;
