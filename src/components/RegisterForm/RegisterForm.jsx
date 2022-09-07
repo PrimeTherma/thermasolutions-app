@@ -39,7 +39,7 @@ function RegisterForm() {
     className="formPanel" onSubmit={registerUser}
     >
     {/* <form className="formPanel" onSubmit={registerUser}> */}
-      <h2 align="center">Register User</h2>
+      <h2 align="center">Create Account</h2>
       {errors.registrationMessage && (
         <h3 className="alert" role="alert">
           {errors.registrationMessage}

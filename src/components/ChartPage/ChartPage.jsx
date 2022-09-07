@@ -6,6 +6,13 @@ import Stopwatch from "../Stopwatch/Stopwatch";
 import { useState, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
+import Button from '@mui/material/Button';
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Typography from '@mui/material/Typography';
+
 function ChartPage() {
 
   const dispatch = useDispatch();
@@ -64,7 +71,7 @@ function ChartPage() {
     console.log('Total HTUs', totalHTUs);
     console.log('Total Time', totalTime);
     // console.log('Full Pro', fullPro);
-   
+
     let totalPro = {        
       id: currentProcedure[0]?.max,
       total_time: totalTime,
@@ -96,11 +103,42 @@ function ChartPage() {
   return (
     <div className="container">
       <div className="grid">
-        <h3>Total HTUs: {currentHTUs.toFixed(2)}</h3>
-        <h3>Current Temp: {currentTemp.toFixed(2)}</h3>
-        <Chart />
-        <Stopwatch />
-        <button onClick={postTotalHTU}>End Procedure</button>
+        <center className="current">
+          <Card sx={{ width: 250, m:1 }}>
+            <CardContent>
+              <Typography variant="h6" >
+                Total HTUs: {currentHTUs.toFixed(2)}
+              </Typography>
+            </CardContent>
+          </Card>
+          <Card sx={{ width: 250, m:1 }}>
+            <CardContent>
+              <Typography variant="h6" >
+                Current Temp: {currentTemp.toFixed(2)}
+              </Typography>
+            </CardContent>
+          </Card>
+        </center>
+          <Card>
+            <CardContent>
+              <Chart />
+            </CardContent>
+          </Card>
+        <center className="stopwatch">
+          <Card sx={{ width: 600, m:1 }}>
+            <CardContent>
+              <Stopwatch />
+            </CardContent>
+          </Card>
+          
+          <Button 
+            variant="contained"
+            color="error"
+            className="btn"
+            onClick={postTotalHTU}>
+              End Procedure
+            </Button>
+          </center>
       </div>
     </div>
   );

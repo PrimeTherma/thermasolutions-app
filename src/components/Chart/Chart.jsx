@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
-import {LineChart, CartesianGrid, YAxis, XAxis, Tooltip, Legend, Line, Label, ReferenceArea} from 'recharts'
+import {LineChart, CartesianGrid, YAxis, XAxis, Tooltip, Legend, Line, Label, ReferenceArea, Cell} from 'recharts'
 
 
 function Chart() {
@@ -53,7 +53,7 @@ function Chart() {
                 <CartesianGrid strokeDasharray="3 3" />
                 
                 <YAxis 
-                    label={{ value: 'AVG Temp', angle: -90, position: 'insideLeft' }} 
+                    label={{ value: 'AVG Temp', angle: -90, position: 'left'}} 
                     type="number" domain={['dataMin - 2', 'dataMax + 2']}
                     interval="preserveStartEnd"
                 />
