@@ -10,7 +10,10 @@ function Nav() {
   return (
     <div className="nav">
       <Link to="/start">
-        <h2 className="nav-title">ThermaSolutions</h2>
+      <div>
+        <img src="images/ThermaSolutions-Logo.jpg" alt="thermasolutions" />
+      </div>  
+        {/* <h2 className="nav-title">ThermaSolutions</h2> */}
       </Link>
       <div>
         {/* If no user is logged in, show these links */}
