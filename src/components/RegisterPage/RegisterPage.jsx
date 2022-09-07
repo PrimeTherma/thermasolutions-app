@@ -1,5 +1,7 @@
 import React from 'react';
 
+import Button from '@mui/material/Button';
+
 import { useHistory } from 'react-router-dom';
 import RegisterForm from '../RegisterForm/RegisterForm';
 
@@ -11,7 +13,9 @@ function RegisterPage() {
       <RegisterForm />
 
       <center>
-        <button
+        <Button
+          variant="outlined"
+          color="error"
           type="button"
           className="btn btn_asLink"
           onClick={() => {
@@ -19,7 +23,7 @@ function RegisterPage() {
           }}
         >
           Login
-        </button>
+        </Button>
       </center>
     </div>
   );
