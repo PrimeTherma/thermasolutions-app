@@ -1,0 +1,11 @@
+.current {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.stopwatch {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

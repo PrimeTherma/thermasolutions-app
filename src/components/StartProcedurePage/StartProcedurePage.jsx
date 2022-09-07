@@ -48,6 +48,7 @@ function StartProcedurePage() {
       <div className="grid">
         <center>
           <Button 
+            sx ={{m: 10}}
             variant="contained"
             color="error"
             className="btn" 
