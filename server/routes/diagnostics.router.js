@@ -52,24 +52,24 @@ router.post("/", async (req, res) => {
   }
 });
 
-// Updates notes
-router.put("/:id", (req, res) => {
-    console.log('this is req.params', req.params);
+// // Updates notes
+// router.put("/:id", (req, res) => {
+//     console.log('this is req.params', req.params);
 
-    const notes = req.body.notes;
-    const id = req.params.id;
+//     const notes = req.body.notes;
+//     const id = req.params.id;
     
-    const queryText = 'UPDATE "diagnostics" SET "notes" = $1 WHERE "id" = $2;';
-    pool
-      .query(queryText, [notes, id])
-      .then(function (response) {
-        res.sendStatus(200);
-      })
-      .catch(function (error) {
-        console.log(error);
-        res.sendStatus(500);
-      });
-});
+//     const queryText = 'UPDATE "procedure" SET "notes" = $1 WHERE "id" = $2;';
+//     pool
+//       .query(queryText, [notes, id])
+//       .then(function (response) {
+//         res.sendStatus(200);
+//       })
+//       .catch(function (error) {
+//         console.log(error);
+//         res.sendStatus(500);
+//       });
+// });
 
 // Deletes individual diagnostics
 router.delete("/individual-procedure/:id", (req, res) => {

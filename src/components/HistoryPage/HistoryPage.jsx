@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import useReduxStore from "../../hooks/useReduxStore";
 
@@ -17,6 +17,11 @@ function HistoryPage() {
   const store = useReduxStore();
   const dispatch = useDispatch();
 
+  // Gets procedure on page load
+  useEffect(() => {
+    dispatch({type: "FETCH_PROCEDURE"});
+  }, []);
+
   // states
   const [show, setShow] = useState(false);
   const [showInput, setShowInput] = useState(false);
@@ -32,46 +37,50 @@ function HistoryPage() {
     dispatch({ type: "FETCH_DIAGNOSTICS" });
   };
 
+  // Gets all procedures - admin function only
+  const getAllHistory = () => {
+    console.log('in getAllHistory');
+
+    dispatch({ type: "FETCH_ALL_HISTORY"});
+  }
+
+  // Shows text input for edit function
   const handleShowInput = (event) => {
     console.log('in showInput');
 
     setShowInput(true);
   }
 
+  // Edits notes for current procedure
   const handleEditSubmit = (event) => {
     console.log('in handleEditSubmit');
+    
+    dispatch({type: "EDIT_NOTES", payload: {notes: noteInput, id: event.target.value}});
 
+    setShowInput(false);
   }
 
-  const handleDelete = (event) => {
-    console.log("in handleDelete, this is event.target.value", event.target.value);
-
-    dispatch({type: "DELETE_DIAGNOSTIC", payload: event.target.value})
-  }
-
-  const deleteAll = () => {
-    console.log("in deleteAll");
-
-    dispatch({type: "DELETE_ALL"});
-  }
-
-  const hideDiagnostics = () => {
+  // Hides diagnostics table
+  function hideDiagnostics() {
     console.log("in hideDiagnostics");
 
     // Hides diagnostics table
     setShow(false);
-  };
+  }
 
   return !show ? (
     <div className="container">
       <div className="grid">
         <Button onClick={getDiagnostics}>Diagnostics</Button>
+        <span><Button onClick={getAllHistory}>All Procedures</Button></span>
       </div>
-      <TableContainer>
+      <div>
+      <TableContainer sx={{width: "85%", margin: "auto"}} component={Paper}>
         <Table>
           <TableHead>
             <TableRow>
               <TableCell>Date/Time</TableCell>
+              <TableCell>Total Time</TableCell>
               <TableCell>Total HTUs</TableCell>
               <TableCell>Notes</TableCell>
               <TableCell><Button>Export ⤴</Button>
@@ -79,24 +88,62 @@ function HistoryPage() {
             </TableRow>
           </TableHead>
           <TableBody>
+            {store.allProcedures.map((procedures, i) => {
+              <TableRow key={i}>
+              <TableCell>{procedures?.date}</TableCell>
+              <TableCell>{procedures?.total_time}</TableCell>
+              <TableCell>{procedures?.total_htu}</TableCell>
+              <TableCell><Button>🗑</Button></TableCell>
+            </TableRow>
+            })}
+          </TableBody>
+        </Table>
+      </TableContainer>
+      </div>
+      <div>
+      <TableContainer
+        sx={{
+          height: 500,
+          width: "85%",
+          overflow: "hidden",
+          overflowY: "scroll",
+          margin: "auto",
+        }}
+        component={Paper}
+      >
+        <Table stickyHeader aria-label="sticky table">
+        <TableHead>
             <TableRow>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
+              <TableCell>Date/Time</TableCell>
+              <TableCell>Total Time</TableCell>
+              <TableCell>Total HTUs</TableCell>
+              <TableCell>Notes</TableCell>
+              <TableCell><Button>Export ⤴</Button>
+              </TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {store.diagnostics.map((diagnostic, i) => (
+              <TableRow>
+              <TableCell>{store.procedure[0]?.date}</TableCell>
+              <TableCell>{store.procedure[0]?.total_time}</TableCell>
+              <TableCell>{store.procedure[0]?.total_htu}</TableCell>
               <TableCell>{ !showInput ? (
                       <>
-                        <Button onClick={(event) => handleShowInput(event)}>✏️</Button>
+                        <Button onClick={(event) => handleShowInput(event)}>{store.procedure[0]?.notes} ✏️</Button>
                       </>
                     ) : (
                       <>
                         <Input
-                          sx={{ width: 40, padding: 1 }}
+                          sx={{ width: 80, padding: 1 }}
                           type="text"
                           onChange={(event) =>
-                            noteInput(event.target.value)
+                            setNoteInput(event.target.value)
                           }
                         />
                         <Button
                           onClick={(event) => handleEditSubmit(event)}
+                          value={store.procedure[0]?.id}
                         >
                           Set
                         </Button>
@@ -104,15 +151,19 @@ function HistoryPage() {
                     )}</TableCell>
               <TableCell><Button>🗑</Button></TableCell>
             </TableRow>
+            ))}
           </TableBody>
         </Table>
       </TableContainer>
+      </div>
     </div>
   ) : (
     <>
       <Button onClick={hideDiagnostics}>Hide</Button>
       <TableContainer
         sx={{
+          height: 500,
+          width: "85%",
           overflow: "hidden",
           overflowY: "scroll",
           margin: "auto",
@@ -132,7 +183,6 @@ function HistoryPage() {
               <TableCell>T5</TableCell>
               <TableCell>T6</TableCell>
               <TableCell>T7</TableCell>
-              <TableCell><Button onClick={deleteAll}>DELETE ALL</Button></TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -147,10 +197,7 @@ function HistoryPage() {
                 <TableCell scope="row">{diagnostic.t4}</TableCell>
                 <TableCell scope="row">{diagnostic.t5}</TableCell>
                 <TableCell scope="row">{diagnostic.t6}</TableCell>
-                <TableCell scope="row">{diagnostic.t7}</TableCell>  
-                <TableCell scope="row">
-                  <Button onClick={(event) => handleDelete(event)} value={diagnostic.procedure_id}>Delete</Button>
-                </TableCell>
+                <TableCell scope="row">{diagnostic.t7}</TableCell>
               </TableRow>
             ))}
           </TableBody>
