@@ -39,7 +39,7 @@ function HistoryPage() {
     dispatch({ type: "FETCH_DIAGNOSTICS" });
   };
 
-  // Gets all procedures - admin function only
+  // Directs to all procedures - admin function only
   const getAllHistory = () => {
     console.log('in getAllHistory');
 
@@ -62,6 +62,12 @@ function HistoryPage() {
     setShowInput(false);
   }
 
+  const deleteRow = (event) => {
+    console.log('in deleteRow');
+
+    dispatch({type: "DELETE_PROCEDURE", payload: event.target.value})
+  }
+
   // Hides diagnostics table
   function hideDiagnostics() {
     console.log("in hideDiagnostics");
@@ -74,12 +80,11 @@ function HistoryPage() {
     <div className="container">
       <div className="grid">
         <Button onClick={getDiagnostics}>Diagnostics</Button>
-        <span><Button onClick={getAllHistory}>All Procedures</Button></span>
+        <span><Button disabled={!store.user.access_level === 1} onClick={getAllHistory}>All Procedures</Button></span>
       </div>
       <div>
       <TableContainer
         sx={{
-          height: 500,
           width: "85%",
           overflow: "hidden",
           overflowY: "scroll",
@@ -99,8 +104,7 @@ function HistoryPage() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {store.diagnostics.map((diagnostic, i) => (
-              <TableRow key={i}>
+              <TableRow>
               <TableCell>{store.procedure[0]?.date}</TableCell>
               <TableCell>{store.procedure[0]?.total_time}</TableCell>
               <TableCell>{store.procedure[0]?.total_htu}</TableCell>
@@ -125,9 +129,8 @@ function HistoryPage() {
                         </Button>
                       </>
                     )}</TableCell>
-              <TableCell><Button>🗑</Button></TableCell>
+              <TableCell><Button onClick={deleteRow} value={store.procedure[0]?.id}>🗑</Button></TableCell>
             </TableRow>
-            ))}
           </TableBody>
         </Table>
       </TableContainer>
