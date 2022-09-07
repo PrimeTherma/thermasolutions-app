@@ -7,7 +7,8 @@ import procedureSaga from './procedure.saga';
 import diagnosticsSaga from './diagnostics.saga';
 
 import deviceDiagnosticsSaga from './deviceDiagnostics.saga';
-
+import totalHTUSaga from './totalHTUs.saga';
+import totalTimeSaga from './totalTime.saga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -27,6 +28,9 @@ export default function* rootSaga() {
 
     procedureSaga(), // procedure saga 
     deviceDiagnosticsSaga(), // device diagnostics
+
+    totalHTUSaga(), // total HTUs
+    totalTimeSaga(), // total time
 
   ]);
 }

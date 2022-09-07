@@ -6,6 +6,8 @@ import diagnostics from './diagnostics.reducer';
 
 import deviceDiagnostics from './deviceDiagnostics.reducer';
 import setProcedure from './setProcedure.reducer';
+import totalHTUs from './totalHTUs.reducer';
+import totalTime from './totalTime.reducer';
 
 
 // rootReducer is the primary reducer for our entire project
@@ -21,7 +23,10 @@ const rootReducer = combineReducers({
   diagnostics, // contains the history of diagnostics
 
   deviceDiagnostics, // will have an id and username if someone is logged in with
-  setProcedure // This grabs the procedure id after hitting the start procedure button
+  setProcedure, // This grabs the procedure id after hitting the start procedure button
+
+  totalHTUs,
+  totalTime,
 
 });
 
