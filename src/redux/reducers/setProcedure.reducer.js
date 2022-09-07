@@ -1,4 +1,4 @@
-const setProcedureReducer = (state = [], action) => {
+const setProcedureReducer = (state = {}, action) => {
     switch (action.type) {
         case 'SET_PROCEDURE':
             return action.payload;

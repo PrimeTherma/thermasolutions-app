@@ -31,6 +31,8 @@ app.use(passport.session());
 /* Routes */
 app.use('/api/user', userRouter);
 app.use('/api/procedure', procedureRouter);
+app.use('/api/htu', procedureRouter);
+app.use('/api/time', procedureRouter);
 
 app.use('/diagnostics', diagnosticsRouter);
 

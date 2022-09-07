@@ -14,7 +14,15 @@ function ChartPage() {
   const deviceDiagnostics = useSelector((store) => store.deviceDiagnostics);
   const [currentHTUs, setCurrentHTUs] = useState(0);
   const [currentTemp, setCurrentTemp] = useState(35);
-  // console.log('Miners way', currentProcedure[0]?.max);
+  const [totalHTUs, setTotalHTUs] = useState(0);
+  const [totalTime, setTotalTime] = useState('');
+  const [fullPro, setFullPro] = useState({
+    id: currentProcedure[0]?.max,
+    total_time: totalTime,
+    total_htu: totalHTUs,
+  });
+  
+  console.log('Miners way', currentProcedure[0]?.max);
 
   const timeoutRef = useRef(null);
 
@@ -45,7 +53,44 @@ function ChartPage() {
           // console.log('Waiting for HTUs', currentHTUs);
           setCurrentTemp(Number(deviceDiagnostics[i].avg_temp))
       }
+
       // return currentHTUs
+  }
+
+
+  const postTotalHTU = () => {
+    console.log('Start Post');
+    console.log('miner broke it',currentProcedure[0]?.max);
+    console.log('Total HTUs', totalHTUs);
+    console.log('Total Time', totalTime);
+    // console.log('Full Pro', fullPro);
+   
+    let totalPro = {        
+      id: currentProcedure[0]?.max,
+      total_time: totalTime,
+      total_htu: totalHTUs,}
+      console.log('totalPro:', totalPro);
+        dispatch({type: 'POST_HTU', payload: totalPro })
+        dispatch({type: 'POST_TIME', payload: totalPro })
+        // dispatch({type: 'POST_TIME', payload: totalTime})
+  };
+
+
+  useEffect(() => {
+    fetchTotals()
+  },[])
+
+  const fetchTotals = (array) => {
+    let sum = 0;
+      for (let i=0; i<deviceDiagnostics.length; i++) {
+          setTotalHTUs(sum += Number(deviceDiagnostics[i].interval_htu))
+      }
+      setTotalTime(deviceDiagnostics[deviceDiagnostics.length-1].interval_time)
+      setFullPro({
+        id: currentProcedure[0]?.max,
+        total_time: totalTime,
+        total_htu: totalHTUs,
+      });
   }
 
   return (
@@ -55,6 +100,7 @@ function ChartPage() {
         <h3>Current Temp: {currentTemp.toFixed(2)}</h3>
         <Chart />
         <Stopwatch />
+        <button onClick={postTotalHTU}>End Procedure</button>
       </div>
     </div>
   );
