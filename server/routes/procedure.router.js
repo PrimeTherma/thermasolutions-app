@@ -138,4 +138,21 @@ router.post("/", (req, res) => {
 });
 
 
+// Deletes procedure
+router.delete("/:id", (req, res) => {
+  console.log('this is req.params', req.params);
+
+  const queryText = 'DELETE FROM "procedure" WHERE id = $1;';
+  pool
+    .query(queryText, [req.params.id])
+    .then(function (response) {
+      res.sendStatus(200);
+    })
+    .catch(function (error) {
+      console.log(error);
+      res.sendStatus(500);
+    });
+});
+
+
 module.exports = router;

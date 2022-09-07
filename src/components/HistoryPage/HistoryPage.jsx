@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 import useReduxStore from "../../hooks/useReduxStore";
 
 // MUI Styling
@@ -16,6 +17,7 @@ import Input from "@mui/material/Input";
 function HistoryPage() {
   const store = useReduxStore();
   const dispatch = useDispatch();
+  const history = useHistory();
 
   // Gets procedure on page load
   useEffect(() => {
@@ -37,11 +39,11 @@ function HistoryPage() {
     dispatch({ type: "FETCH_DIAGNOSTICS" });
   };
 
-  // Gets all procedures - admin function only
+  // Directs to all procedures - admin function only
   const getAllHistory = () => {
     console.log('in getAllHistory');
 
-    dispatch({ type: "FETCH_ALL_HISTORY"});
+    history.push('/admin')
   }
 
   // Shows text input for edit function
@@ -60,6 +62,12 @@ function HistoryPage() {
     setShowInput(false);
   }
 
+  const deleteRow = (event) => {
+    console.log('in deleteRow');
+
+    dispatch({type: "DELETE_PROCEDURE", payload: event.target.value})
+  }
+
   // Hides diagnostics table
   function hideDiagnostics() {
     console.log("in hideDiagnostics");
@@ -72,38 +80,11 @@ function HistoryPage() {
     <div className="container">
       <div className="grid">
         <Button onClick={getDiagnostics}>Diagnostics</Button>
-        <span><Button onClick={getAllHistory}>All Procedures</Button></span>
-      </div>
-      <div>
-      <TableContainer sx={{width: "85%", margin: "auto"}} component={Paper}>
-        <Table>
-          <TableHead>
-            <TableRow>
-              <TableCell>Date/Time</TableCell>
-              <TableCell>Total Time</TableCell>
-              <TableCell>Total HTUs</TableCell>
-              <TableCell>Notes</TableCell>
-              <TableCell><Button>Export ⤴</Button>
-              </TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {store.allProcedures.map((procedures, i) => {
-              <TableRow key={i}>
-              <TableCell>{procedures?.date}</TableCell>
-              <TableCell>{procedures?.total_time}</TableCell>
-              <TableCell>{procedures?.total_htu}</TableCell>
-              <TableCell><Button>🗑</Button></TableCell>
-            </TableRow>
-            })}
-          </TableBody>
-        </Table>
-      </TableContainer>
+        <span><Button disabled={!store.user.access_level === 1} onClick={getAllHistory}>All Procedures</Button></span>
       </div>
       <div>
       <TableContainer
         sx={{
-          height: 500,
           width: "85%",
           overflow: "hidden",
           overflowY: "scroll",
@@ -123,7 +104,6 @@ function HistoryPage() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {store.diagnostics.map((diagnostic, i) => (
               <TableRow>
               <TableCell>{store.procedure[0]?.date}</TableCell>
               <TableCell>{store.procedure[0]?.total_time}</TableCell>
@@ -149,9 +129,8 @@ function HistoryPage() {
                         </Button>
                       </>
                     )}</TableCell>
-              <TableCell><Button>🗑</Button></TableCell>
+              <TableCell><Button onClick={deleteRow} value={store.procedure[0]?.id}>🗑</Button></TableCell>
             </TableRow>
-            ))}
           </TableBody>
         </Table>
       </TableContainer>

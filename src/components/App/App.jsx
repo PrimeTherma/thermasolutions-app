@@ -14,6 +14,7 @@ import Footer from "../Footer/Footer";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 
 import AboutPage from "../AboutPage/AboutPage";
+import AdminPage from "../AdminPage/AdminPage";
 import ChartPage from "../ChartPage/ChartPage";
 import HistoryPage from "../HistoryPage/HistoryPage";
 import LoginPage from "../LoginPage/LoginPage";
@@ -67,6 +68,17 @@ function App() {
             ) : (
               // Otherwise, show the registration page
               <RegisterPage />
+            )}
+          </Route>
+
+          <Route exact path="/admin">
+            {user.id !== 1 ? (
+              // If the user is already logged in,
+              // redirect them to the /start page
+              <Redirect to="/start" />
+            ) : (
+              // Otherwise, show the registration page
+              <AdminPage />
             )}
           </Route>
 
