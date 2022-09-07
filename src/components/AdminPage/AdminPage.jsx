@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import useReduxStore from "../../hooks/useReduxStore";
+import { useHistory } from "react-router-dom";
 
 // MUI Styling
 import Table from "@mui/material/Table";
@@ -15,11 +16,18 @@ import Button from "@mui/material/Button";
 function AdminPage() {
   const store = useReduxStore();
   const dispatch = useDispatch();
+  const history = useHistory();
 
   // Gets procedure on page load
   useEffect(() => {
     dispatch({ type: "FETCH_ALL_HISTORY" });
   }, []);
+
+  const handleGoBackBtn = () => {
+    console.log('in handleGoBackBtn');
+
+    history.push('/history')    
+  }
 
   const deleteRow = (event) => {
     console.log('in deleteRow');
@@ -29,6 +37,7 @@ function AdminPage() {
 
   return (
     <div>
+      <Button onClick={handleGoBackBtn}>Go Back</Button>
       <TableContainer sx={{ height: 500, width: "85%", margin: "auto" }} component={Paper}>
         <Table>
           <TableHead>
@@ -37,9 +46,6 @@ function AdminPage() {
               <TableCell>Total Time</TableCell>
               <TableCell>Total HTUs</TableCell>
               <TableCell>Notes</TableCell>
-              <TableCell>
-                <Button>Export ⤴</Button>
-              </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
