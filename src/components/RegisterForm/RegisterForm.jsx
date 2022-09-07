@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+
 function RegisterForm() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -20,8 +24,22 @@ function RegisterForm() {
   }; // end registerUser
 
   return (
-    <form className="formPanel" onSubmit={registerUser}>
-      <h2>Register User</h2>
+    <Box
+    component="form"
+    sx={{
+        display: 'flex',
+        justifyContent: 'center',
+        flexDirection: 'column',
+        alignItems: 'center',
+      '& > :not(style)': { m: 1, width: '25ch' },
+    }}
+    noValidate
+    alignContent="center"
+    autoComplete="off"
+    className="formPanel" onSubmit={registerUser}
+    >
+    {/* <form className="formPanel" onSubmit={registerUser}> */}
+      <h2 align="center">Register User</h2>
       {errors.registrationMessage && (
         <h3 className="alert" role="alert">
           {errors.registrationMessage}
@@ -29,8 +47,9 @@ function RegisterForm() {
       )}
       <div>
         <label htmlFor="username">
-          Username:
-          <input
+          Username
+          <TextField
+            color="error"
             type="text"
             name="username"
             value={username}
@@ -41,8 +60,9 @@ function RegisterForm() {
       </div>
       <div>
         <label htmlFor="password">
-          Password:
-          <input
+          Password
+          <TextField
+            color="error"
             type="password"
             name="password"
             value={password}
@@ -52,9 +72,21 @@ function RegisterForm() {
         </label>
       </div>
       <div>
-        <input className="btn" type="submit" name="submit" value="Register" />
+        <Button 
+          variant="contained"
+          color="error"
+          className="btn" 
+          type="submit" 
+          name="submit" 
+          value="Log In"
+          sx={{align: "center"}}
+          >
+            Create Account
+        {/* <input className="btn" type="submit" name="submit" value="Register" /> */}
+        </Button>
       </div>
-    </form>
+    {/* </form> */}
+    </Box>
   );
 }
 

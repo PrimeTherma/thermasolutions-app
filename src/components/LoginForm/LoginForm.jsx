@@ -2,6 +2,10 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import {useSelector} from 'react-redux';
 
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+
 function LoginForm() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -25,8 +29,22 @@ function LoginForm() {
   }; // end login
 
   return (
-    <form className="formPanel" onSubmit={login}>
-      <h2>Login</h2>
+    <Box
+    component="form"
+    sx={{
+        display: 'flex',
+        justifyContent: 'center',
+        flexDirection: 'column',
+        alignItems: 'center',
+      '& > :not(style)': { m: 1, width: '25ch' },
+    }}
+    noValidate
+    alignContent="center"
+    autoComplete="off"
+    className="formPanel" onSubmit={login}
+    >
+    {/* <form className="formPanel" onSubmit={login}> */}
+      <h2 align="center">Login</h2>
       {errors.loginMessage && (
         <h3 className="alert" role="alert">
           {errors.loginMessage}
@@ -34,8 +52,9 @@ function LoginForm() {
       )}
       <div>
         <label htmlFor="username">
-          Username:
-          <input
+          Username
+          <TextField
+            color="error"
             type="text"
             name="username"
             required
@@ -46,8 +65,9 @@ function LoginForm() {
       </div>
       <div>
         <label htmlFor="password">
-          Password:
-          <input
+          Password
+          <TextField
+            color="error"
             type="password"
             name="password"
             required
@@ -57,9 +77,21 @@ function LoginForm() {
         </label>
       </div>
       <div>
-        <input className="btn" type="submit" name="submit" value="Log In" />
+        <Button 
+          variant="contained"
+          color="error"
+          className="btn" 
+          type="submit" 
+          name="submit" 
+          value="Log In"
+          sx={{align: "center"}}
+          >
+            LOGIN
+          {/* <input className="btn" type="submit" name="submit" value="Log In" /> */}
+          </Button>
       </div>
-    </form>
+    {/* </form> */}
+    </Box>
   );
 }
 

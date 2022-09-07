@@ -2,7 +2,7 @@ import React, { useState, useEffect} from "react";
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 
-
+import Button from '@mui/material/Button';
 
 function StartProcedurePage() {
   const dispatch = useDispatch();
@@ -46,7 +46,15 @@ function StartProcedurePage() {
   return (
     <div className="container">
       <div className="grid">
-        <button onClick={startProcedure}>Start Procedure</button>
+        <center>
+          <Button 
+            variant="contained"
+            color="error"
+            className="btn" 
+            onClick={startProcedure}>
+            Start Procedure
+          </Button>
+        </center>
       </div>
     </div>
   );
