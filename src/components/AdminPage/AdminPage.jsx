@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import useReduxStore from "../../hooks/useReduxStore";
 import { useHistory } from "react-router-dom";
+import "./AdminPage.css";
 
 // MUI Styling
 import Table from "@mui/material/Table";
@@ -37,7 +38,15 @@ function AdminPage() {
 
   return (
     <div>
-      <Button onClick={handleGoBackBtn}>Go Back</Button>
+      <div className="adminButton">
+        <Button 
+          sx={{m: 1}}
+          variant="contained" 
+          onClick={handleGoBackBtn}
+          >
+          Go Back
+        </Button>
+      </div>
       <TableContainer sx={{ height: 500, width: "85%", margin: "auto" }} component={Paper}>
         <Table>
           <TableHead>

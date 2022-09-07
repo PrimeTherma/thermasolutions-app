@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import useReduxStore from "../../hooks/useReduxStore";
+import "./HistoryPage.css";
 // Sheet JS 
 const XLSX = require("xlsx");
 
@@ -90,9 +91,33 @@ function HistoryPage() {
   return !show ? (
     <div className="container">
       <div className="grid">
-        <Button onClick={getDiagnostics}>Diagnostics</Button>
-        <span><Button disabled={!store.user.access_level === 1} onClick={getAllHistory}>All Procedures</Button></span>
-        <Button onClick={exportData} disabled={!store.user.access_level === 1}>Export Diagnostics ⤴</Button>
+        <div className="historyButtons">
+          <Button 
+            sx={{m: 1}}
+            variant="contained" 
+            color="error"
+            onClick={getDiagnostics}
+          >
+            Diagnostics
+            </Button>
+          <span>
+            <Button 
+              sx={{m: 1}}
+              variant="contained" 
+              color="warning"
+              disabled={!store.user.access_level === 1} onClick={getAllHistory}
+            >
+              All Procedures
+            </Button>
+          </span>
+          <Button 
+            sx={{m: 1}}
+            variant="contained" 
+            onClick={exportData} disabled={!store.user.access_level === 1}
+          >
+            Export Diagnostics ⤴
+          </Button>
+        </div>
       </div>
       <div>
       <TableContainer
@@ -147,9 +172,23 @@ function HistoryPage() {
       </div>
     </div>
   ) : (
-    <>
-      <Button onClick={hideDiagnostics}>Hide</Button>
-      <Button onClick={exportData} disabled={!store.user.access_level === 1}>Export Diagnostics ⤴</Button>
+    <div>
+      <div className="diagnosticsButtons">
+        <Button 
+          sx={{m: 1}}
+          variant="outlined" 
+          color="error"
+          onClick={hideDiagnostics}
+          >Hide
+        </Button>
+        <Button 
+          sx={{m: 1}}
+          variant="contained" 
+          onClick={exportData} disabled={!store.user.access_level === 1}
+        >
+          Export Diagnostics ⤴
+        </Button>
+      </div>
       <TableContainer
         sx={{
           height: 500,
@@ -193,7 +232,7 @@ function HistoryPage() {
           </TableBody>
         </Table>
       </TableContainer>
-    </>
+    </div>
   );
 }
 
