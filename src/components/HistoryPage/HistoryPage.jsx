@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 import useReduxStore from "../../hooks/useReduxStore";
 
 // MUI Styling
@@ -16,6 +17,7 @@ import Input from "@mui/material/Input";
 function HistoryPage() {
   const store = useReduxStore();
   const dispatch = useDispatch();
+  const history = useHistory();
 
   // Gets procedure on page load
   useEffect(() => {
@@ -41,7 +43,7 @@ function HistoryPage() {
   const getAllHistory = () => {
     console.log('in getAllHistory');
 
-    dispatch({ type: "FETCH_ALL_HISTORY"});
+    history.push('/admin')
   }
 
   // Shows text input for edit function
@@ -75,32 +77,6 @@ function HistoryPage() {
         <span><Button onClick={getAllHistory}>All Procedures</Button></span>
       </div>
       <div>
-      <TableContainer sx={{width: "85%", margin: "auto"}} component={Paper}>
-        <Table>
-          <TableHead>
-            <TableRow>
-              <TableCell>Date/Time</TableCell>
-              <TableCell>Total Time</TableCell>
-              <TableCell>Total HTUs</TableCell>
-              <TableCell>Notes</TableCell>
-              <TableCell><Button>Export ⤴</Button>
-              </TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {store.allProcedures.map((procedures, i) => {
-              <TableRow key={i}>
-              <TableCell>{procedures?.date}</TableCell>
-              <TableCell>{procedures?.total_time}</TableCell>
-              <TableCell>{procedures?.total_htu}</TableCell>
-              <TableCell><Button>🗑</Button></TableCell>
-            </TableRow>
-            })}
-          </TableBody>
-        </Table>
-      </TableContainer>
-      </div>
-      <div>
       <TableContainer
         sx={{
           height: 500,
@@ -124,7 +100,7 @@ function HistoryPage() {
           </TableHead>
           <TableBody>
             {store.diagnostics.map((diagnostic, i) => (
-              <TableRow>
+              <TableRow key={i}>
               <TableCell>{store.procedure[0]?.date}</TableCell>
               <TableCell>{store.procedure[0]?.total_time}</TableCell>
               <TableCell>{store.procedure[0]?.total_htu}</TableCell>
