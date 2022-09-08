@@ -5,6 +5,11 @@ import {useSelector} from 'react-redux';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Typography from '@mui/material/Typography';
 
 function LoginForm() {
   const [username, setUsername] = useState('');
@@ -32,6 +37,7 @@ function LoginForm() {
     <Box
     component="form"
     sx={{
+        mt: 15,
         display: 'flex',
         justifyContent: 'center',
         flexDirection: 'column',
@@ -44,14 +50,14 @@ function LoginForm() {
     className="formPanel" onSubmit={login}
     >
     {/* <form className="formPanel" onSubmit={login}> */}
-      <h2 align="center">Login</h2>
+      <Typography align="center" variant="h4">Login</Typography>
       {errors.loginMessage && (
         <h3 className="alert" role="alert">
           {errors.loginMessage}
         </h3>
       )}
       <div>
-        <label htmlFor="username">
+        <Typography htmlFor="username">
           Username
           <TextField
             color="error"
@@ -61,10 +67,10 @@ function LoginForm() {
             value={username}
             onChange={(event) => setUsername(event.target.value)}
           />
-        </label>
+        </Typography>
       </div>
       <div>
-        <label htmlFor="password">
+        <Typography htmlFor="password">
           Password
           <TextField
             color="error"
@@ -74,7 +80,7 @@ function LoginForm() {
             value={password}
             onChange={(event) => setPassword(event.target.value)}
           />
-        </label>
+        </Typography>
       </div>
       <div>
         <Button 

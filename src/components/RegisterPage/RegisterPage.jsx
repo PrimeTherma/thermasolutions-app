@@ -14,7 +14,8 @@ function RegisterPage() {
 
       <center>
         <Button
-          variant="outlined"
+          sx={{ m:1}}
+          variant="contained"
           type="button"
           className="btn btn_asLink"
           onClick={() => {

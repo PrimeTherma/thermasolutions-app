@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
 
 function RegisterForm() {
   const [username, setUsername] = useState('');
@@ -27,6 +28,7 @@ function RegisterForm() {
     <Box
     component="form"
     sx={{
+        mt: 15,
         display: 'flex',
         justifyContent: 'center',
         flexDirection: 'column',
@@ -39,14 +41,14 @@ function RegisterForm() {
     className="formPanel" onSubmit={registerUser}
     >
     {/* <form className="formPanel" onSubmit={registerUser}> */}
-      <h2 align="center">Create Account</h2>
+      <Typography align="center" variant="h4">Create Account</Typography>
       {errors.registrationMessage && (
         <h3 className="alert" role="alert">
           {errors.registrationMessage}
         </h3>
       )}
       <div>
-        <label htmlFor="username">
+        <Typography htmlFor="username">
           Username
           <TextField
             color="error"
@@ -56,10 +58,10 @@ function RegisterForm() {
             required
             onChange={(event) => setUsername(event.target.value)}
           />
-        </label>
+        </Typography>
       </div>
       <div>
-        <label htmlFor="password">
+        <Typography htmlFor="password">
           Password
           <TextField
             color="error"
@@ -69,7 +71,7 @@ function RegisterForm() {
             required
             onChange={(event) => setPassword(event.target.value)}
           />
-        </label>
+        </Typography>
       </div>
       <div>
         <Button 
