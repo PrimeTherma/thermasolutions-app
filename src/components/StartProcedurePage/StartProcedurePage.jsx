@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 
 import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
 
 function StartProcedurePage() {
   const dispatch = useDispatch();
@@ -46,9 +47,11 @@ function StartProcedurePage() {
   return (
     <div className="container">
       <div className="grid">
+        <Typography align="center" variant="h4" color="lightgrey">NEW PROCEDURE</Typography>
+
         <center>
           <Button 
-            sx ={{m: 20}}
+            sx ={{mt: 20, mb: 5}}
             variant="contained"
             size="large"
             color="error"
@@ -56,6 +59,9 @@ function StartProcedurePage() {
             onClick={startProcedure}>
             Start Procedure
           </Button>
+          <center>
+            <Typography sx ={{m: 1}} align="center" variant="h7" color="grey">* Pressing Button Will Start Timer and Chart Current Procedure *</Typography>
+          </center>
         </center>
       </div>
     </div>
