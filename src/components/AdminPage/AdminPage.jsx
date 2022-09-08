@@ -48,13 +48,14 @@ function AdminPage() {
         </Button>
       </div>
       <TableContainer sx={{ height: 500, width: "85%", margin: "auto" }} component={Paper}>
-        <Table>
+        <Table stickyHeader aria-label="sticky table">
           <TableHead>
             <TableRow>
               <TableCell>Date/Time</TableCell>
               <TableCell>Total Time</TableCell>
               <TableCell>Total HTUs</TableCell>
               <TableCell>Notes</TableCell>
+              <TableCell></TableCell>
             </TableRow>
           </TableHead>
           <TableBody>

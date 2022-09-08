@@ -48,7 +48,7 @@ function Chart() {
     return (
         <div>
             <h1>{time}</h1>
-            <LineChart width={730} height={250} data={array}
+            <LineChart width={930} height={450} data={array}
                 margin={{ top: 5, right: 30, left: 20, bottom: 10 }}>
                 <CartesianGrid strokeDasharray="3 3" />
                 
