@@ -40,7 +40,7 @@ return(
           color="error"
           onClick={() => setStart(false)}
           >
-            Stop
+            Stop Timer
         </Button>
     </Typography>
 

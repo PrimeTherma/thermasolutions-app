@@ -129,7 +129,7 @@ function ChartPage() {
           </Card>
         </center> 
         <center className="stopwatch">
-          <Card sx={{ width: 600, m:1 }}>
+          <Card sx={{ width: 500, m:1 }}>
             <CardContent>
               <Stopwatch />
             </CardContent>
@@ -141,7 +141,7 @@ function ChartPage() {
             color="error"
             className="btn"
             onClick={postTotalHTU}>
-              End Procedure
+              Finish Procedure
             </Button>
           </center>
       </div>

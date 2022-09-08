@@ -82,8 +82,8 @@ router.put('/:id', (req, res) => {
   console.log('req.body for htu:',req.body.total_htu);
     const idToUpdate = req.params.id;
     console.log('this is req.params.id', req.params.id);
-    const sqlText = `UPDATE "procedure" SET total_htu = $1, total_time = $2 WHERE id =$3;`;
-    pool.query(sqlText, [req.body.total_htu, req.body.total_time, idToUpdate])
+    const sqlText = `UPDATE "procedure" SET total_htu = $1, total_time = $2 WHERE id = (SELECT MAX(id) FROM "procedure");`;
+    pool.query(sqlText, [req.body.total_htu, req.body.total_time])
         .then((result) => {
             res.sendStatus(200);
         })

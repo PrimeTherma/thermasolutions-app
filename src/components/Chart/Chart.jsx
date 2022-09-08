@@ -49,7 +49,7 @@ function Chart() {
         <div>
             <h1>{time}</h1>
             <LineChart width={930} height={450} data={array}
-                margin={{ top: 5, right: 30, left: 20, bottom: 10 }}>
+                margin={{ top: 5, right: 30, left: 15, bottom: 10 }}>
                 <CartesianGrid strokeDasharray="3 3" />
                 
                 <YAxis 
@@ -59,9 +59,9 @@ function Chart() {
                 />
                 <Tooltip />
                 <Legend />
-                <Line type="monotone" dataKey="Temp" stroke="#E23E1B" position="bottom"/>
-                <XAxis dataKey="Time">
-                    {/* <Label value="Time" offset={0} position="bottom" /> */}
+                <Line type="monotone" dataKey="Temp" stroke="#E23E1B" strokeWidth={3} />
+                <XAxis dataKey="Time" >
+                    {/* <Label value="Time" offset={15} position="bottom" /> */}
                 </XAxis>
                 <ReferenceArea y1={40.8} y2={42} label="Cancer Kill Zone" />
     

@@ -9,13 +9,17 @@ const XLSX = require("xlsx");
 // MUI Styling
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
+import TableCell, { tableCellClasses } from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
 import Input from "@mui/material/Input";
+import Typography from '@mui/material/Typography';
+import { styled } from '@mui/material/styles';
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
 function HistoryPage() {
   const store = useReduxStore();
@@ -88,6 +92,16 @@ function HistoryPage() {
     setShow(false);
   }
 
+  const StyledTableCell = styled(TableCell)(({ theme }) => ({
+    [`&.${tableCellClasses.head}`]: {
+      backgroundColor: theme.palette.error.dark,
+      color: theme.palette.common.white,
+    },
+    [`&.${tableCellClasses.body}`]: {
+      fontSize: 14,
+    },
+  }));
+
   return !show ? (
     <div className="container">
       <div className="grid">
@@ -120,6 +134,9 @@ function HistoryPage() {
         </div>
       </div>
       <div>
+      <div className="header">
+        <Typography align="center" variant="h4" color="lightgrey">CURRENT PROCEDURE</Typography>
+      </div>
       <TableContainer
         sx={{
           width: "85%",
@@ -132,11 +149,11 @@ function HistoryPage() {
         <Table stickyHeader aria-label="sticky table">
         <TableHead>
             <TableRow>
-              <TableCell>Date/Time</TableCell>
-              <TableCell>Total Time</TableCell>
-              <TableCell>Total HTUs</TableCell>
-              <TableCell>Notes</TableCell>
-              <TableCell></TableCell>
+              <StyledTableCell>Date/Time</StyledTableCell>
+              <StyledTableCell>Total Time</StyledTableCell>
+              <StyledTableCell>Total HTUs</StyledTableCell>
+              <StyledTableCell>Notes</StyledTableCell>
+              <StyledTableCell></StyledTableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -146,7 +163,9 @@ function HistoryPage() {
               <TableCell>{store.procedure[0]?.total_htu}</TableCell>
               <TableCell>{ !showInput ? (
                       <>
-                        <Button onClick={(event) => handleShowInput(event)}>{store.procedure[0]?.notes} ✏️</Button>
+                        <Button variant="contained" onClick={(event) => handleShowInput(event)}>{store.procedure[0]?.notes}
+                          <EditIcon />
+                        </Button>
                       </>
                     ) : (
                       <>
@@ -166,7 +185,11 @@ function HistoryPage() {
                         </Button>
                       </>
                     )}</TableCell>
-              <TableCell><Button onClick={deleteRow} value={store.procedure[0]?.id}>🗑</Button></TableCell>
+              <TableCell>
+                <Button variant="contained" color="error" onClick={deleteRow} value={store.procedure[0]?.id}>
+                  <DeleteForeverIcon />
+                </Button>
+              </TableCell>
             </TableRow>
           </TableBody>
         </Table>
@@ -192,6 +215,9 @@ function HistoryPage() {
           Export to Excel
         </Button>
       </div>
+      <div className="header">
+        <Typography align="center" variant="h4" color="lightgrey">DIAGNOSTICS HISTORY</Typography>
+      </div>
       <TableContainer
         sx={{
           height: 500,
@@ -205,16 +231,16 @@ function HistoryPage() {
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
             <TableRow>
-              <TableCell>Interval Time</TableCell>
-              <TableCell>Interval HTUs</TableCell>
-              <TableCell>Avg Time</TableCell>
-              <TableCell>T1</TableCell>
-              <TableCell>T2</TableCell>
-              <TableCell>T3</TableCell>
-              <TableCell>T4</TableCell>
-              <TableCell>T5</TableCell>
-              <TableCell>T6</TableCell>
-              <TableCell>T7</TableCell>
+              <StyledTableCell>Interval Time</StyledTableCell>
+              <StyledTableCell>Interval HTUs</StyledTableCell>
+              <StyledTableCell>Avg Time</StyledTableCell>
+              <StyledTableCell>T1</StyledTableCell>
+              <StyledTableCell>T2</StyledTableCell>
+              <StyledTableCell>T3</StyledTableCell>
+              <StyledTableCell>T4</StyledTableCell>
+              <StyledTableCell>T5</StyledTableCell>
+              <StyledTableCell>T6</StyledTableCell>
+              <StyledTableCell>T7</StyledTableCell>
             </TableRow>
           </TableHead>
           <TableBody>
