@@ -80,6 +80,8 @@ function ChartPage() {
         dispatch({type: 'POST_HTU', payload: totalPro })
         dispatch({type: 'POST_TIME', payload: totalPro })
         // dispatch({type: 'POST_TIME', payload: totalTime})
+
+      history.push('/history')
   };
 
 
@@ -119,11 +121,13 @@ function ChartPage() {
             </CardContent>
           </Card>
         </center>
-          <Card>
+        <center>
+          <Card sx={{ width: 1050, m:1 }}>
             <CardContent>
               <Chart />
             </CardContent>
           </Card>
+        </center> 
         <center className="stopwatch">
           <Card sx={{ width: 600, m:1 }}>
             <CardContent>
@@ -132,6 +136,7 @@ function ChartPage() {
           </Card>
           
           <Button 
+            sx={{ m:1 }}
             variant="contained"
             color="error"
             className="btn"

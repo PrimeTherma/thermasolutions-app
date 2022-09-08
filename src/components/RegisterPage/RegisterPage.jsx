@@ -15,7 +15,6 @@ function RegisterPage() {
       <center>
         <Button
           variant="outlined"
-          color="error"
           type="button"
           className="btn btn_asLink"
           onClick={() => {

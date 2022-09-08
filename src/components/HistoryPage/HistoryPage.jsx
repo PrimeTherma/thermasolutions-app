@@ -104,7 +104,6 @@ function HistoryPage() {
             <Button 
               sx={{m: 1}}
               variant="contained" 
-              color="warning"
               disabled={!store.user.access_level === 1} onClick={getAllHistory}
             >
               All Procedures
@@ -113,9 +112,10 @@ function HistoryPage() {
           <Button 
             sx={{m: 1}}
             variant="contained" 
+            color="success"
             onClick={exportData} disabled={!store.user.access_level === 1}
           >
-            Export Diagnostics ⤴
+            Export to Excel
           </Button>
         </div>
       </div>
@@ -136,6 +136,7 @@ function HistoryPage() {
               <TableCell>Total Time</TableCell>
               <TableCell>Total HTUs</TableCell>
               <TableCell>Notes</TableCell>
+              <TableCell></TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -157,6 +158,7 @@ function HistoryPage() {
                           }
                         />
                         <Button
+                          variant="contained"
                           onClick={(event) => handleEditSubmit(event)}
                           value={store.procedure[0]?.id}
                         >
@@ -176,17 +178,18 @@ function HistoryPage() {
       <div className="diagnosticsButtons">
         <Button 
           sx={{m: 1}}
-          variant="outlined" 
+          variant="contained" 
           color="error"
           onClick={hideDiagnostics}
           >Hide
         </Button>
         <Button 
           sx={{m: 1}}
+          color="success"
           variant="contained" 
           onClick={exportData} disabled={!store.user.access_level === 1}
         >
-          Export Diagnostics ⤴
+          Export to Excel
         </Button>
       </div>
       <TableContainer
