@@ -48,8 +48,9 @@ function* editNotes(action) {
     console.log('in editNotes, this is action.payload', action.payload);
 
     try {
-        yield axios.put(`/api/procedure/${action.payload.id}`, action.payload);
+        yield axios.put(`/api/procedure/notes/${action.payload.id}`, action.payload);
         yield put({type: "UPDATE_NOTES"});
+        yield put({type: "FETCH_PROCEDURE"})
     } catch (error) {
         console.log('Error UPDATEing notes', error);
     }
