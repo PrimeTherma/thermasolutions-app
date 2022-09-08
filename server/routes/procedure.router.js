@@ -56,14 +56,34 @@ router.get("/all-history", (req, res) => {
 });
 
 
+// router.put('/:id', (req, res) => {
+//   console.log('in put router for total htus:');
+//   console.log('req.body for id:',req.body.id);
+//   console.log('req.body for time:',req.body.total_time);
+//   console.log('req.body for htu:',req.body.total_htu);
+//     const idToUpdate = req.params.id;
+//     console.log('this is req.params.id', req.params.id);
+//     const sqlText = `UPDATE procedure SET total_htu = $1 WHERE id = $2;`;
+//     // const sqlText = `UPDATE procedure SET total_htu = $1, total_time = $2 WHERE id = $3;`;
+//     pool.query(sqlText, [req.body.total_htu, idToUpdate])
+//         .then((result) => {
+//             res.sendStatus(200);
+//         })
+//         .catch((error) => {
+//             console.log(`Error making database query ${sqlText}`, error);
+//             res.sendStatus(500);
+//         });
+// });
+
 router.put('/:id', (req, res) => {
+  console.log('in put router for total time:');
   console.log('req.body for id:',req.body.id);
   console.log('req.body for time:',req.body.total_time);
   console.log('req.body for htu:',req.body.total_htu);
     const idToUpdate = req.params.id;
     console.log('this is req.params.id', req.params.id);
-    const sqlText = `UPDATE procedure SET total_htu = $1 WHERE id = $2`;
-    pool.query(sqlText, [req.body.total_htu, idToUpdate])
+    const sqlText = `UPDATE "procedure" SET total_htu = $1, total_time = $2 WHERE id =$3;`;
+    pool.query(sqlText, [req.body.total_htu, req.body.total_time, idToUpdate])
         .then((result) => {
             res.sendStatus(200);
         })
