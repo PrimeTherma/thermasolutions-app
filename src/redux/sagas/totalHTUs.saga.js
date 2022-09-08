@@ -10,7 +10,7 @@ function* postHTU(action) {
     // const procedure=useSelector((store) => store.setProcedure);
     try {
         // const procedure=useSelector((store) => store.setProcedure);
-        const response = yield axios.put(`/api/htu/${action.payload.id}`, action.payload);
+        const response = yield axios.put(`/api/procedure/htu/${action.payload.id}`, action.payload);
         yield put({type: "SET_TOTAL_HTUS", payload: response.data});
     } catch (error) {
         console.log('Error in postHTUS', error);
