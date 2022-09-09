@@ -21,7 +21,7 @@ router.get("/", (req, res) => {
 
 // Gets procedure information
 router.get("/all", (req, res) => {
-  const sqlText = `SELECT id, total_time, total_htu, date, notes 
+    const sqlText = `SELECT id, total_time, total_htu, TO_CHAR(date,'MM/DD/YYYY'), notes 
     FROM "procedure" WHERE id = (SELECT MAX(id) FROM "procedure") 
     ;`;
   pool
@@ -40,7 +40,7 @@ router.get("/all", (req, res) => {
 
 // Gets history information for all procedures
 router.get("/all-history", (req, res) => {
-  const sqlText = 'SELECT * FROM procedure ORDER BY id';
+    const sqlText = `SELECT id, user_id, total_time, total_htu, TO_CHAR(date,'MM/DD/YYYY'), notes  FROM procedure ORDER BY id`;
   pool
     .query(sqlText)
     .then((result) => {

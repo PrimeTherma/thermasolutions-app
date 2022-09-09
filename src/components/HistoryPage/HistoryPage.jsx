@@ -161,7 +161,7 @@ function HistoryPage() {
         <Table stickyHeader aria-label="sticky table">
         <TableHead>
             <TableRow>
-              <StyledTableCell>Date/Time</StyledTableCell>
+              <StyledTableCell>Date</StyledTableCell>
               <StyledTableCell>Total Time</StyledTableCell>
               <StyledTableCell>Total HTUs</StyledTableCell>
               <StyledTableCell>Notes</StyledTableCell>
@@ -170,7 +170,7 @@ function HistoryPage() {
           </TableHead>
           <TableBody>
               <TableRow>
-              <TableCell>{store.procedure[0]?.date}</TableCell>
+              <TableCell>{store.procedure[0]?.to_char}</TableCell>
               <TableCell>{store.procedure[0]?.total_time}</TableCell>
               <TableCell>{store.procedure[0]?.total_htu}</TableCell>
               <TableCell>{ !showInput ? (
