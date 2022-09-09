@@ -39,7 +39,7 @@ function StartProcedurePage() {
     console.log('Start Post');
     for (let i=0; i<deviceDiagnostics.length; i++) {
         dispatch({type: 'POST_DIAGNOSTICS', payload: deviceDiagnostics[i]})
-        await sleep (250) // if changing post interval, change all await intervals to be the same
+        await sleep (100) // if changing post interval, change all await intervals to be the same
     }
   };
 

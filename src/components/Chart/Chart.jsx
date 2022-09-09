@@ -39,7 +39,7 @@ function Chart() {
 
     const validate = async (Object) => {
         for (let i=0; i<deviceDiagnostics.length; i++) {
-            await sleep (250)
+            await sleep (100)
             setArray((prevState)=>[...prevState,{Temp: Number(deviceDiagnostics[i].avg_temp), Time: String(deviceDiagnostics[i].interval_time)}])
         }
     }
