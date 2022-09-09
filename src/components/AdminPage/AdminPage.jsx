@@ -52,6 +52,15 @@ function AdminPage() {
 
   return (
     <div>
+      <div className="adminButton">
+        <Button 
+          sx={{m: 1}}
+          variant="contained" 
+          onClick={handleGoBackBtn}
+          >
+          Go Back
+        </Button>
+      </div>
       <div className="header">
         <Typography align="center" variant="h4" color="lightgrey">DIAGNOSTICS HISTORY</Typography>
       </div>
@@ -74,7 +83,7 @@ function AdminPage() {
                 <TableCell>{allProcedure?.total_htu}</TableCell>
                 <TableCell>{allProcedure?.notes}</TableCell>
                 <TableCell>
-                  <Button variant="contained" color="error" onClick={deleteRow} value={store.procedure[0]?.id}>
+                  <Button variant="contained" color="warning" onClick={deleteRow} value={store.procedure[0]?.id}>
                   <DeleteForeverIcon />
                   </Button>
                 </TableCell>
@@ -83,15 +92,6 @@ function AdminPage() {
           </TableBody>
         </Table>
       </TableContainer>
-      <div className="adminButton">
-        <Button 
-          sx={{m: 1}}
-          variant="contained" 
-          onClick={handleGoBackBtn}
-          >
-          Go Back
-        </Button>
-      </div>
     </div>
   );
 }

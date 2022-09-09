@@ -1,6 +1,26 @@
-footer {
+.footer {
   margin-top: 80px;
   padding: 20px;
   text-align: center;
   color: #f0f0f0;
+}
+
+.footLink {
+  display: inline-block;
+  color: rgb(170, 168, 168);
+  /* background-color: #ffffff; */
+  text-align: center;
+  padding: 24px 10px;
+  text-decoration: none;
+  font-size: 15px;
+
+  /* these last two make the logout button in
+  the nav bar look like another link */
+  border: none;
+  cursor: pointer;
+  outline: 0;
+}
+
+.footLink:hover {
+  color: rgb(112, 3, 3);
 }
