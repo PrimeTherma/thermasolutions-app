@@ -22,6 +22,13 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import Swal from 'sweetalert2';
 import Tooltip from '@mui/material/Tooltip';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import TextField from '@mui/material/TextField';
+import { HowToReg } from "@mui/icons-material";
 
 function HistoryPage() {
   const store = useReduxStore();
@@ -39,6 +46,7 @@ function HistoryPage() {
   const [show, setShow] = useState(false);
   const [showInput, setShowInput] = useState(false);
   const [noteInput, setNoteInput] = useState('');
+  const [open, setOpen] = React.useState(false);
 
   // Gets diagnostics
   const getDiagnostics = () => {
@@ -58,18 +66,23 @@ function HistoryPage() {
 
   // Shows text input for edit function
   const handleShowInput = (event) => {
+    event.preventDefault();
     console.log('in showInput');
 
     setShowInput(true);
+    setOpen(true);
   }
 
   // Edits notes for current procedure
   const handleEditSubmit = (event) => {
+    event.preventDefault();
     console.log('in handleEditSubmit');
     
-    dispatch({type: "EDIT_NOTES", payload: {notes: noteInput, id: event.target.value}});
+    dispatch({type: "EDIT_NOTES", payload: {notes: noteInput, id: store.procedure[0]?.id}});
 
     setShowInput(false);
+    setOpen(false);
+    dispatch({ type: "FETCH_PROCEDURE" });
   }
   // Export Diagnostic Data
   const exportData = () => {
@@ -109,9 +122,10 @@ function HistoryPage() {
     [`&.${tableCellClasses.head}`]: {
       backgroundColor: theme.palette.error.dark,
       color: theme.palette.common.white,
+      fontSize: 20,
     },
     [`&.${tableCellClasses.body}`]: {
-      fontSize: 14,
+      fontSize: 18,
     },
   }));
 
@@ -173,38 +187,48 @@ function HistoryPage() {
               <StyledTableCell>Total HTUs</StyledTableCell>
               <StyledTableCell>Notes</StyledTableCell>
               <StyledTableCell></StyledTableCell>
+              <StyledTableCell></StyledTableCell>
             </TableRow>
           </TableHead>
           <TableBody>
               <TableRow>
-              <TableCell>{store.procedure[0]?.to_char}</TableCell>
-              <TableCell>{store.procedure[0]?.total_time}</TableCell>
-              <TableCell>{store.procedure[0]?.total_htu}</TableCell>
+              <StyledTableCell>{store.procedure[0]?.to_char}</StyledTableCell>
+              <StyledTableCell>{store.procedure[0]?.total_time}</StyledTableCell>
+              <StyledTableCell>{store.procedure[0]?.total_htu}</StyledTableCell>
+              <StyledTableCell>{store.procedure[0]?.notes}</StyledTableCell>
               <TableCell>{ !showInput ? (
                       <>
-                      <Tooltip title="Take Notes" >
-                        <Button variant="contained" onClick={(event) => handleShowInput(event)}>{store.procedure[0]?.notes}
-                          <EditIcon />
-                        </Button>
+                        <Tooltip title="Take Notes" >
+                          <Button variant="contained" onClick={(event) => handleShowInput(event)}>
+                            <EditIcon />
+                          </Button>
                         </Tooltip>
                       </>
                     ) : (
-                      <>
-                        <Input
-                          sx={{ width: 80, padding: 1 }}
-                          type="text"
-                          onChange={(event) =>
-                            setNoteInput(event.target.value)
-                          }
-                        />
-                        <Button
-                          variant="contained"
-                          onClick={(event) => handleEditSubmit(event)}
-                          value={store.procedure[0]?.id}
-                        >
-                          Submit
-                        </Button>
-                      </>
+                      <Dialog 
+                        open={open} onClose={(event) => handleEditSubmit(event)}
+                      >
+                        <DialogTitle> Add Notes</DialogTitle>
+                        <DialogContent>
+                            <TextField
+                            color="error"
+                            id="outlined-multiline-flexible"
+                            multiline
+                            minRows={4}
+                            onChange={(event) => setNoteInput(event.target.value)}
+                            placeholder='update notes'
+                            fullWidth
+                            value={noteInput} // important
+                            />
+                        </DialogContent>
+                        <DialogActions>
+                            <Button  
+                            variant="contained"
+                            type='submit'
+                            onClick={handleEditSubmit}>Submit
+                            </Button>
+                        </DialogActions>
+                      </Dialog>   
                     )}</TableCell>
               <TableCell>
               <Tooltip title="Delete Procedure" >
@@ -270,16 +294,16 @@ function HistoryPage() {
           <TableBody>
             {store.diagnostics.map((diagnostic, i) => (
               <TableRow key={i}>
-                <TableCell scope="row">{diagnostic.interval_time}</TableCell>
-                <TableCell scope="row">{diagnostic.interval_htu}</TableCell>
-                <TableCell scope="row">{diagnostic.avg_temp}</TableCell>
-                <TableCell scope="row">{diagnostic.t1}</TableCell>
-                <TableCell scope="row">{diagnostic.t2}</TableCell>
-                <TableCell scope="row">{diagnostic.t3}</TableCell>
-                <TableCell scope="row">{diagnostic.t4}</TableCell>
-                <TableCell scope="row">{diagnostic.t5}</TableCell>
-                <TableCell scope="row">{diagnostic.t6}</TableCell>
-                <TableCell scope="row">{diagnostic.t7}</TableCell>
+                <StyledTableCell scope="row">{diagnostic.interval_time}</StyledTableCell>
+                <StyledTableCell scope="row">{diagnostic.interval_htu}</StyledTableCell>
+                <StyledTableCell scope="row">{diagnostic.avg_temp}</StyledTableCell>
+                <StyledTableCell scope="row">{diagnostic.t1}</StyledTableCell>
+                <StyledTableCell scope="row">{diagnostic.t2}</StyledTableCell>
+                <StyledTableCell scope="row">{diagnostic.t3}</StyledTableCell>
+                <StyledTableCell scope="row">{diagnostic.t4}</StyledTableCell>
+                <StyledTableCell scope="row">{diagnostic.t5}</StyledTableCell>
+                <StyledTableCell scope="row">{diagnostic.t6}</StyledTableCell>
+                <StyledTableCell scope="row">{diagnostic.t7}</StyledTableCell>
               </TableRow>
             ))}
           </TableBody>

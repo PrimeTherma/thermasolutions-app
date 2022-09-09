@@ -46,9 +46,10 @@ function AdminPage() {
     [`&.${tableCellClasses.head}`]: {
       backgroundColor: theme.palette.error.dark,
       color: theme.palette.common.white,
+      fontSize: 20,
     },
     [`&.${tableCellClasses.body}`]: {
-      fontSize: 14,
+      fontSize: 18,
     },
   }));
 
@@ -80,10 +81,10 @@ function AdminPage() {
           <TableBody>
             {store.allProcedures.map((allProcedure, i) => (
               <TableRow key={i}>
-                <TableCell>{allProcedure?.to_char}</TableCell>
-                <TableCell>{allProcedure?.total_time}</TableCell>
-                <TableCell>{allProcedure?.total_htu}</TableCell>
-                <TableCell>{allProcedure?.notes}</TableCell>
+                <StyledTableCell>{allProcedure?.to_char}</StyledTableCell>
+                <StyledTableCell>{allProcedure?.total_time}</StyledTableCell>
+                <StyledTableCell>{allProcedure?.total_htu}</StyledTableCell>
+                <StyledTableCell>{allProcedure?.notes}</StyledTableCell>
                 <TableCell>
                   <Tooltip title="Delete">
                   <Button variant="contained" color="warning" onClick={deleteRow} value={store.procedure[0]?.id}>
