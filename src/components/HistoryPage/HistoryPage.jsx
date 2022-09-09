@@ -21,6 +21,7 @@ import { styled } from '@mui/material/styles';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import Swal from 'sweetalert2';
+import Tooltip from '@mui/material/Tooltip';
 
 function HistoryPage() {
   const store = useReduxStore();
@@ -87,7 +88,7 @@ function HistoryPage() {
       cancelButtonColor: '#3085d6',
       confirmButtonColor: '#d33',
       confirmButtonText: 'Delete',
-              showCancelButton: true,
+              showCancelButton: true,  
   }).then((result) => {
       if (result.isConfirmed) {
           dispatch({type: "DELETE_PROCEDURE", payload: event.target.value});
@@ -118,6 +119,7 @@ function HistoryPage() {
     <div className="container">
       <div className="grid">
         <div className="historyButtons">
+          <Tooltip title="View Diagnostics" >
           <Button 
             sx={{m: 1}}
             variant="contained" 
@@ -126,7 +128,9 @@ function HistoryPage() {
           >
             Diagnostics
             </Button>
+            </Tooltip>
           <span>
+          <Tooltip title="All Procedures" >
             <Button 
               sx={{m: 1}}
               variant="contained" 
@@ -134,7 +138,9 @@ function HistoryPage() {
             >
               All Procedures
             </Button>
+            </Tooltip>
           </span>
+          <Tooltip title="Export As Spreadsheet" >
           <Button 
             sx={{m: 1}}
             variant="contained" 
@@ -143,6 +149,7 @@ function HistoryPage() {
           >
             Export to Excel
           </Button>
+          </Tooltip>
         </div>
       </div>
       <div>
@@ -175,9 +182,11 @@ function HistoryPage() {
               <TableCell>{store.procedure[0]?.total_htu}</TableCell>
               <TableCell>{ !showInput ? (
                       <>
+                      <Tooltip title="Take Notes" >
                         <Button variant="contained" onClick={(event) => handleShowInput(event)}>{store.procedure[0]?.notes}
                           <EditIcon />
                         </Button>
+                        </Tooltip>
                       </>
                     ) : (
                       <>
@@ -198,9 +207,11 @@ function HistoryPage() {
                       </>
                     )}</TableCell>
               <TableCell>
+              <Tooltip title="Delete Procedure" >
                 <Button variant="contained" color="warning" onClick={deleteRow} value={store.procedure[0]?.id}>
                   <DeleteForeverIcon />
                 </Button>
+                </Tooltip>
               </TableCell>
             </TableRow>
           </TableBody>
@@ -217,6 +228,7 @@ function HistoryPage() {
           onClick={hideDiagnostics}
           >Go Back
         </Button>
+        <Tooltip title="Export As Spreadsheet" >
         <Button 
           sx={{m: 1}}
           color="success"
@@ -225,6 +237,7 @@ function HistoryPage() {
         >
           Export to Excel
         </Button>
+        </Tooltip>
       </div>
       <div className="header">
         <Typography align="center" variant="h4" color="lightgrey">DIAGNOSTICS HISTORY</Typography>

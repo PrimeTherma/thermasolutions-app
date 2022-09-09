@@ -6,6 +6,7 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
+import Tooltip from '@mui/material/Tooltip';
 
 function Stopwatch() {
 
@@ -33,6 +34,7 @@ return(
         <span>{("0" + Math.floor(time / 3600000)).slice(-2)}:</span>
         <span>{("0" + Math.floor((time / 60000) % 60)).slice(-2)}:</span>
         <span>{("0" + Math.floor((time / 1000) % 60)).slice(-2)}</span>
+        <Tooltip title="Stop">
         <Button 
           sx={{ml: 6}}
           variant="outlined" 
@@ -42,6 +44,7 @@ return(
           >
             Stop Timer
         </Button>
+        </Tooltip>
     </Typography>
 
       {/* <button onClick={() => setStart(true)}>Start</button> */}

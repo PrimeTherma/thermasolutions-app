@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import Tooltip from '@mui/material/Tooltip';
 
 function StartProcedurePage() {
   const dispatch = useDispatch();
@@ -50,6 +51,7 @@ function StartProcedurePage() {
         <Typography align="center" variant="h4" color="lightgrey">NEW PROCEDURE</Typography>
 
         <center>
+        <Tooltip title="Start Procedure" >
           <Button 
             sx ={{mt: 20, mb: 5}}
             variant="contained"
@@ -59,6 +61,7 @@ function StartProcedurePage() {
             onClick={startProcedure}>
             Start Procedure
           </Button>
+          </Tooltip>
           <center>
             <Typography sx ={{m: 1}} align="center" variant="h7" color="grey">* Pressing Button Will Start Timer and Chart Current Procedure *</Typography>
           </center>
