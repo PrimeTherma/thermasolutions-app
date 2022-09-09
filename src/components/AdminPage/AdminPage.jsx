@@ -68,7 +68,7 @@ function AdminPage() {
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
             <TableRow>
-            <StyledTableCell>Date/Time</StyledTableCell>
+            <StyledTableCell>Date</StyledTableCell>
               <StyledTableCell>Total Time</StyledTableCell>
               <StyledTableCell>Total HTUs</StyledTableCell>
               <StyledTableCell>Notes</StyledTableCell>
@@ -78,7 +78,7 @@ function AdminPage() {
           <TableBody>
             {store.allProcedures.map((allProcedure, i) => (
               <TableRow key={i}>
-                <TableCell>{allProcedure?.date}</TableCell>
+                <TableCell>{allProcedure?.to_char}</TableCell>
                 <TableCell>{allProcedure?.total_time}</TableCell>
                 <TableCell>{allProcedure?.total_htu}</TableCell>
                 <TableCell>{allProcedure?.notes}</TableCell>
