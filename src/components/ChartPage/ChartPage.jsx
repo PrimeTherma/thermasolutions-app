@@ -23,6 +23,7 @@ function ChartPage() {
   const [currentTemp, setCurrentTemp] = useState(35);
   const [totalHTUs, setTotalHTUs] = useState(0);
   const [totalTime, setTotalTime] = useState('');
+
   const [fullPro, setFullPro] = useState({
     id: currentProcedure[0]?.max,
     total_time: totalTime,
@@ -113,13 +114,23 @@ function ChartPage() {
               </Typography>
             </CardContent>
           </Card>
-          <Card sx={{ width: 250, m:1 }}>
-            <CardContent>
-              <Typography variant="h6" >
-                Current Temp: {currentTemp.toFixed(2)}
-              </Typography>
-            </CardContent>
-          </Card>
+          { currentTemp > 42 ? (
+                <Card sx={{ width: 250, m:1, backgroundColor: 'red', color: 'white' }}>
+                  <CardContent>
+                    <Typography variant="h6" >
+                      Current Temp: {currentTemp.toFixed(2)}
+                    </Typography>
+                  </CardContent>
+                </Card>
+            ) : (
+                <Card sx={{ width: 250, m:1 }}>
+                  <CardContent>
+                    <Typography variant="h6" >
+                      Current Temp: {currentTemp.toFixed(2)}
+                    </Typography>
+                  </CardContent>
+                </Card>
+          )}
         </center>
         <center>
           <Card sx={{ width: 1050, m:1 }}>
