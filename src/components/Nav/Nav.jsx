@@ -132,18 +132,18 @@ function Nav() {
             </MenuItem>
             {/* If a user is logged in, show these links */}
             {user.id && (
-              <>
+              <div>
                 <Divider />
                 <MenuItem className="footLink">
                   {/* <ListItemIcon>
                     <Logout fontSize="small" />
                   </ListItemIcon> */}
                     {/* <LogOutButton className="footLink" /> */}
-                  <Link className="footLink" onClick={() => dispatch({ type: 'LOGOUT' })}>
+                  <Link  className="footLink" onClick={() => dispatch({ type: 'LOGOUT' })} to="/login">
                     Log Out
                   </Link>
                 </MenuItem>
-              </>
+              </div>
             )}
           </Menu>
         </React.Fragment>
