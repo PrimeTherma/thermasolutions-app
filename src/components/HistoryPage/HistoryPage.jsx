@@ -20,6 +20,7 @@ import Typography from '@mui/material/Typography';
 import { styled } from '@mui/material/styles';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import Swal from 'sweetalert2';
 
 function HistoryPage() {
   const store = useReduxStore();
@@ -79,9 +80,20 @@ function HistoryPage() {
   }
 
   const deleteRow = (event) => {
-    console.log('in deleteRow');
-
-    dispatch({type: "DELETE_PROCEDURE", payload: event.target.value})
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You will not be able to undo this action!",
+      // icon: 'warning',
+      cancelButtonColor: '#3085d6',
+      confirmButtonColor: '#d33',
+      confirmButtonText: 'Delete',
+              showCancelButton: true,
+  }).then((result) => {
+      if (result.isConfirmed) {
+          dispatch({type: "DELETE_PROCEDURE", payload: event.target.value});
+      } 
+  });
+    
   }
 
   // Hides diagnostics table
