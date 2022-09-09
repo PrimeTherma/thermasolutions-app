@@ -17,6 +17,8 @@ import Input from "@mui/material/Input";
 import Typography from '@mui/material/Typography';
 import { styled } from '@mui/material/styles';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import Tooltip from '@mui/material/Tooltip';
+
 
 function AdminPage() {
   const store = useReduxStore();
@@ -83,9 +85,11 @@ function AdminPage() {
                 <TableCell>{allProcedure?.total_htu}</TableCell>
                 <TableCell>{allProcedure?.notes}</TableCell>
                 <TableCell>
+                  <Tooltip title="Delete">
                   <Button variant="contained" color="warning" onClick={deleteRow} value={store.procedure[0]?.id}>
                   <DeleteForeverIcon />
                   </Button>
+                  </Tooltip>
                 </TableCell>
               </TableRow>
             ))}
