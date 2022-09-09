@@ -181,12 +181,12 @@ function HistoryPage() {
                           onClick={(event) => handleEditSubmit(event)}
                           value={store.procedure[0]?.id}
                         >
-                          Set
+                          Submit
                         </Button>
                       </>
                     )}</TableCell>
               <TableCell>
-                <Button variant="contained" color="error" onClick={deleteRow} value={store.procedure[0]?.id}>
+                <Button variant="contained" color="warning" onClick={deleteRow} value={store.procedure[0]?.id}>
                   <DeleteForeverIcon />
                 </Button>
               </TableCell>
@@ -202,9 +202,8 @@ function HistoryPage() {
         <Button 
           sx={{m: 1}}
           variant="contained" 
-          color="error"
           onClick={hideDiagnostics}
-          >Hide
+          >Go Back
         </Button>
         <Button 
           sx={{m: 1}}
