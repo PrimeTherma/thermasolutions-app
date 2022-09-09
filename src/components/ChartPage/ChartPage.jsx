@@ -12,6 +12,8 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
+import Tooltip from '@mui/material/Tooltip';
+
 
 function ChartPage() {
 
@@ -134,7 +136,7 @@ function ChartPage() {
               <Stopwatch />
             </CardContent>
           </Card>
-          
+          <Tooltip title="End Procedure" placement="right-end">
           <Button 
             sx={{ m:1 }}
             variant="contained"
@@ -143,6 +145,7 @@ function ChartPage() {
             onClick={postTotalHTU}>
               Finish Procedure
             </Button>
+            </Tooltip>
           </center>
       </div>
     </div>
