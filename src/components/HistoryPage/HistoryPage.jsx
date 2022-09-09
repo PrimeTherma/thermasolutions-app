@@ -143,27 +143,33 @@ function HistoryPage() {
             Diagnostics
             </Button>
             </Tooltip>
-          <span>
-          <Tooltip title="All Procedures" >
-            <Button 
-              sx={{m: 1}}
-              variant="contained" 
-              disabled={!store.user.access_level === 1} onClick={getAllHistory}
-            >
-              All Procedures
-            </Button>
-            </Tooltip>
-          </span>
-          <Tooltip title="Export As Spreadsheet" >
-          <Button 
-            sx={{m: 1}}
-            variant="contained" 
-            color="success"
-            onClick={exportData} disabled={!store.user.access_level === 1}
-          >
-            Export to Excel
-          </Button>
-          </Tooltip>
+          {store.user.access_level !== 1 ? (
+            <></>
+          ) : (
+            <>
+              <span>
+              <Tooltip title="All Procedures" >
+                <Button 
+                  sx={{m: 1}}
+                  variant="contained" 
+                  disabled={store.user.access_level !== 1} onClick={getAllHistory}
+                >
+                  All Procedures
+                </Button>
+                </Tooltip>
+              </span>
+              <Tooltip title="Export As Spreadsheet" >
+              <Button 
+                sx={{m: 1}}
+                variant="contained" 
+                color="success"
+                onClick={exportData} disabled={store.user.access_level !== 1}
+              >
+                Export to Excel
+              </Button>
+              </Tooltip>
+            </>
+          )}
         </div>
       </div>
       <div>
@@ -252,16 +258,22 @@ function HistoryPage() {
           onClick={hideDiagnostics}
           >Go Back
         </Button>
-        <Tooltip title="Export As Spreadsheet" >
-        <Button 
-          sx={{m: 1}}
-          color="success"
-          variant="contained" 
-          onClick={exportData} disabled={!store.user.access_level === 1}
-        >
-          Export to Excel
-        </Button>
-        </Tooltip>
+        {store.user.access_level !== 1 ? (
+            <></>
+          ) : (
+            <>
+              <Tooltip title="Export As Spreadsheet" >
+              <Button 
+                sx={{m: 1}}
+                color="success"
+                variant="contained" 
+                onClick={exportData} disabled={!store.user.access_level === 1}
+              >
+                Export to Excel
+              </Button>
+              </Tooltip>
+            </>
+          )}
       </div>
       <div className="header">
         <Typography align="center" variant="h4" color="lightgrey">DIAGNOSTICS HISTORY</Typography>
