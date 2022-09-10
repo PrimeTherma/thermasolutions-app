@@ -53,7 +53,7 @@ function Nav() {
                 aria-haspopup="true"
                 aria-expanded={open ? 'true' : undefined}
               >
-                <MenuIcon color="error" size="large"/>
+                <MenuIcon color="secondary" size="large"/>
               </IconButton>
             </Tooltip>
           </Box>

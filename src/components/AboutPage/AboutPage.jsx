@@ -17,7 +17,7 @@ function AboutPage() {
       <div>
         <Card sx={{ mb: 6 , backgroundColor: 'lightgrey' }}>
           <CardContent>
-            <Typography align="center" variant="h4" color="Red">History of ThermaSolutions</Typography>
+            <Typography align="center" variant="h4" color="secondary">History of ThermaSolutions</Typography>
             <Typography>Cytoreductive surgery (CRS) for tumor debulking has been practiced since the 1930s and techniques continued
               to advance during subsequent decades. In the 1980s, research indicated hyperthermia plus intraperitoneal chemotherapy
               was effective to combat cancer cells after the first HIPEC ever was performed in 1979. A 47-year-old Japanese patient was treated by Dr.
@@ -32,7 +32,7 @@ function AboutPage() {
         </Card>
         <Card sx={{ mt: 4, backgroundColor: 'lightgrey' }}>
           <CardContent>
-            <Typography align="center" variant="h4" color="Red">About ThermaSolutions</Typography>
+            <Typography align="center" variant="h4" color="secondary">About ThermaSolutions</Typography>
 
             <Typography>ThermaSolutions traces a history back to 2003 with the acquisition of ViaCirq, Inc. Prior to the acquisition,
               ViaCirq had obtained the first FDA cleared device specifically designed for HIPEC in December 1999.

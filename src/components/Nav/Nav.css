@@ -7,7 +7,7 @@
   margin: 0 0 30px;
   background-color: #ffffff;
   overflow: hidden;
-  border-bottom: 2px solid #b70b0b;
+  border-bottom: 2px solid #99012c;
 }
 
 .nav a {
@@ -17,14 +17,14 @@
 .nav-title {
   font-size: 24px;
   font-weight: 700;
-  color: #b70b0b;
+  color: #99012c;
   padding-left: 10px;
   margin: 0;
 }
 
 .navLink {
   display: inline-block;
-  color: #b70b0b;
+  color: #99012c;
   background-color: #ffffff;
   text-align: center;
   padding: 24px 10px;
@@ -39,6 +39,6 @@
 }
 
 .navLink:hover {
-  background-color: #b70b0b;
+  background-color: #99012c;
   color: #ffffff;
 }

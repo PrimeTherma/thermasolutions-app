@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Tooltip from '@mui/material/Tooltip';
+import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
 
 function StartProcedurePage() {
   const dispatch = useDispatch();
@@ -44,8 +45,20 @@ function StartProcedurePage() {
     }
   };
 
+  const theme = createTheme({
+    palette: {
+      secondary: {
+        light: '#0066ff',
+        main: '#99012c',
+        // dark: will be calculated from palette.secondary.main,
+        contrastText: 'white',
+      }
+    }  
+});
+
 
   return (
+  <ThemeProvider theme={theme}>
     <div className="container">
       <div className="grid">
         <Typography align="center" variant="h4" color="lightgrey">NEW PROCEDURE</Typography>
@@ -56,7 +69,7 @@ function StartProcedurePage() {
             sx ={{mt: 20, mb: 5}}
             variant="contained"
             size="large"
-            color="error"
+            color="secondary"
             className="btn" 
             onClick={startProcedure}>
             Start Procedure
@@ -68,6 +81,7 @@ function StartProcedurePage() {
         </center>
       </div>
     </div>
+  </ThemeProvider>
   );
 }
 

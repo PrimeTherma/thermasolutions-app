@@ -151,7 +151,7 @@ function ChartPage() {
           <Button 
             sx={{ m:1 }}
             variant="contained"
-            color="error"
+            color="secondary"
             className="btn"
             onClick={postTotalHTU}>
               Finish Procedure
