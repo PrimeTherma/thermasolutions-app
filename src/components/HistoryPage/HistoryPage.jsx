@@ -120,7 +120,7 @@ function HistoryPage() {
 
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
-      backgroundColor: theme.palette.error.dark,
+      backgroundColor: theme.palette.secondary.main,
       color: theme.palette.common.white,
       fontSize: 20,
     },
@@ -137,7 +137,7 @@ function HistoryPage() {
           <Button 
             sx={{m: 1}}
             variant="contained" 
-            color="error"
+            color="secondary"
             onClick={getDiagnostics}
           >
             Diagnostics
@@ -217,7 +217,7 @@ function HistoryPage() {
                         <DialogTitle> Add Notes</DialogTitle>
                         <DialogContent>
                             <TextField
-                            color="error"
+                            color="secondary"
                             id="outlined-multiline-flexible"
                             multiline
                             minRows={4}

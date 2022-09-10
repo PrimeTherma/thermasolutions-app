@@ -31,10 +31,10 @@ Button
 .btn {
   display: inline-block;
   padding: 10px 20px;
-  border-color: #e5082d;
+  border-color: #99012c;
   border-width: 1px 1px 3px;
   border-radius: 4px;
-  background-color: #e5082d;
+  background-color: #99012c;
   color: #f8f8f8;
   font-size: 1.1rem;
   outline: 0;
@@ -57,7 +57,7 @@ Button
 }
 
 .btn:hover {
-  background-color: #e5082d;
+  background-color: #99012c;
   text-decoration: none;
 }
 
@@ -75,8 +75,8 @@ Button
 
 .btn_asLink:hover {
   background-color: transparent;
-  border-color: #e5082d;
-  color: #e5082d;
+  border-color: #99012c;
+  color: #99012c;
 }
 
 /* --------------------------------------------------------------------------------
@@ -87,10 +87,10 @@ Alert
   box-sizing: border-box;
   padding: 15px 10px;
   margin: 15px 0;
-  border: 2px solid #e01616;
+  border: 2px solid #99012c;
   background-color: #f8f8f8;
   border-radius: 3px;
-  color: #e01616;
+  color: #99012c;
   font-size: 0.8rem;
 }
 

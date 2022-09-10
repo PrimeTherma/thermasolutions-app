@@ -21,6 +21,8 @@ import LoginPage from "../LoginPage/LoginPage";
 import RegisterPage from "../RegisterPage/RegisterPage";
 import StartProcedurePage from "../StartProcedurePage/StartProcedurePage";
 
+import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
+
 import "./App.css";
 
 function App() {
@@ -32,7 +34,31 @@ function App() {
     dispatch({ type: "FETCH_USER" });
   }, [dispatch]);
 
+  const theme = createTheme({
+    palette: {
+      primary: {
+        // light: will be calculated from palette.primary.main,
+        main: '#152696',
+        // dark: will be calculated from palette.primary.main,
+        // contrastText: will be calculated to contrast with palette.primary.main
+      },
+      secondary: {
+        light: '#0066ff',
+        main: '#99012c',
+        // dark: will be calculated from palette.secondary.main,
+        contrastText: 'white',
+      },
+      warning: {
+        // light: will be calculated from palette.primary.main,
+        main: '#e86f05',
+        // dark: will be calculated from palette.primary.main,
+        // contrastText: will be calculated to contrast with palette.primary.main
+      }
+    }  
+});
+
   return (
+    <ThemeProvider theme={theme}>
     <Router>
       <div>
         <Nav />
@@ -102,6 +128,7 @@ function App() {
         <Footer />
       </div>
     </Router>
+    </ThemeProvider>
   );
 }
 

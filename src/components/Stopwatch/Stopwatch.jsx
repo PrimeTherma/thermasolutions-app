@@ -39,7 +39,7 @@ return(
           sx={{ml: 6}}
           variant="outlined" 
           size="large"
-          color="error"
+          color="secondary"
           onClick={() => setStart(false)}
           >
             Stop Timer

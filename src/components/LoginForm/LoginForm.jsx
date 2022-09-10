@@ -60,7 +60,7 @@ function LoginForm() {
         <Typography htmlFor="username">
           Username
           <TextField
-            color="error"
+            color="secondary"
             type="text"
             name="username"
             required
@@ -73,7 +73,7 @@ function LoginForm() {
         <Typography htmlFor="password">
           Password
           <TextField
-            color="error"
+            color="secondary"
             type="password"
             name="password"
             required
@@ -85,7 +85,7 @@ function LoginForm() {
       <div>
         <Button 
           variant="contained"
-          color="error"
+          color="secondary"
           className="btn" 
           type="submit" 
           name="submit" 

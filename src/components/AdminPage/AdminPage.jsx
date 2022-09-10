@@ -44,7 +44,7 @@ function AdminPage() {
 
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
-      backgroundColor: theme.palette.error.dark,
+      backgroundColor: theme.palette.secondary.main,
       color: theme.palette.common.white,
       fontSize: 20,
     },

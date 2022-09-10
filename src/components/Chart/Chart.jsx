@@ -59,7 +59,7 @@ function Chart() {
                 />
                 <Tooltip />
                 <Legend />
-                <Line type="monotone" dataKey="Temp" stroke="#E23E1B" strokeWidth={3} />
+                <Line type="monotone" dataKey="Temp" stroke="#99012c" strokeWidth={3} />
                 <XAxis dataKey="Time" >
                     {/* <Label value="Time" offset={15} position="bottom" /> */}
                 </XAxis>

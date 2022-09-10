@@ -51,7 +51,7 @@ function RegisterForm() {
         <Typography htmlFor="username">
           Username
           <TextField
-            color="error"
+            color="secondary"
             type="text"
             name="username"
             value={username}
@@ -64,7 +64,7 @@ function RegisterForm() {
         <Typography htmlFor="password">
           Password
           <TextField
-            color="error"
+            color="secondary"
             type="password"
             name="password"
             value={password}
@@ -76,7 +76,7 @@ function RegisterForm() {
       <div>
         <Button 
           variant="contained"
-          color="error"
+          color="secondary"
           className="btn" 
           type="submit" 
           name="submit" 
