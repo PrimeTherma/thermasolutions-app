@@ -22,7 +22,7 @@ router.get("/", (req, res) => {
 // Gets procedure information
 router.get("/all", (req, res) => {
     const sqlText = `SELECT id, total_time, total_htu, TO_CHAR(date,'MM/DD/YYYY'), notes 
-    FROM "procedure" WHERE id = (SELECT MAX(id) FROM "procedure") 
+    FROM "procedure" WHERE id = (SELECT MAX(id) FROM "procedure") AND total_time IS NOT NULL
     ;`;
   pool
     .query(sqlText)
