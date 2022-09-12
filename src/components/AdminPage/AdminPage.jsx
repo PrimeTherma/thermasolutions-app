@@ -18,6 +18,7 @@ import Typography from '@mui/material/Typography';
 import { styled } from '@mui/material/styles';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import Tooltip from '@mui/material/Tooltip';
+import Swal from 'sweetalert2';
 
 
 function AdminPage() {
@@ -36,10 +37,22 @@ function AdminPage() {
     history.push('/history')    
   }
 
-  const deleteRow = (event) => {
-    console.log('in deleteRow');
 
-    dispatch({type: "DELETE_PROCEDURE", payload: event.target.value})
+  const deleteRow = (event) => {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You will not be able to undo this action!",
+      // icon: 'warning',
+      cancelButtonColor: '#3085d6',
+      confirmButtonColor: '#d33',
+      confirmButtonText: 'Delete',
+              showCancelButton: true,  
+  }).then((result) => {
+      if (result.isConfirmed) {
+          dispatch({type: "DELETE_PROCEDURE", payload: event.target.value});
+      } 
+  });
+    
   }
 
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
