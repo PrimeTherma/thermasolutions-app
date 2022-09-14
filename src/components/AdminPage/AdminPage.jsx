@@ -100,8 +100,8 @@ function AdminPage() {
                 <StyledTableCell>{allProcedure?.notes}</StyledTableCell>
                 <TableCell>
                   <Tooltip title="Delete">
-                  <Button variant="contained" color="warning" onClick={deleteRow} value={store.procedure[0]?.id}>
-                  <DeleteForeverIcon />
+                  <Button variant="contained" color="warning" onClick={(event) => deleteRow(event)} value={allProcedure?.id}>
+                  Delete
                   </Button>
                   </Tooltip>
                 </TableCell>
