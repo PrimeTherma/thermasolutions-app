@@ -239,7 +239,7 @@ function HistoryPage() {
               <TableCell>
               <Tooltip title="Delete Procedure" >
                 <Button variant="contained" color="warning" onClick={deleteRow} value={store.procedure[0]?.id}>
-                  <DeleteForeverIcon />
+                  Delete
                 </Button>
                 </Tooltip>
               </TableCell>

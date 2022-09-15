@@ -57,7 +57,7 @@ function ChartPage() {
   const fetchCurrentHTUs = async (array) => {
     let sum = 0;
       for (let i=0; i<deviceDiagnostics.length; i++) {
-          await sleep (100)
+          await sleep (20000)
           setCurrentHTUs(sum += Number(deviceDiagnostics[i].interval_htu))
           // setCurrentHTUs(Number(currentHTUs += deviceDiagnostics[i].interval_htu))
           // console.log('Waiting for HTUs', currentHTUs);
