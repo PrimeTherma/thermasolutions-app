@@ -42,7 +42,7 @@ function StartProcedurePage() {
     for (let i=0; i<deviceDiagnostics.length; i++) {
         dispatch({type: 'POST_DIAGNOSTICS', payload: deviceDiagnostics[i]})
         await sleep (20000) // if changing post interval, change all await intervals to be the same
-    }
+    } // 20000 ms == 20 secs
   };
 
   const theme = createTheme({

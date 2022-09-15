@@ -39,7 +39,7 @@ function Chart() {
 
     const validate = async (Object) => {
         for (let i=0; i<deviceDiagnostics.length; i++) {
-            await sleep (20000)
+            await sleep (20000) // matches post interval 20000 ms = 20 secs; if changed, change all intervals
             setArray((prevState)=>[...prevState,{Temp: Number(deviceDiagnostics[i].avg_temp), Time: String(deviceDiagnostics[i].interval_time)}])
         }
     }
